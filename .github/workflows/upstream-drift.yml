@@ -1,0 +1,45 @@
+name: Check upstream drift
+
+on:
+  schedule:
+    - cron: "23 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python scripts/sync_sources.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Report changed upstream snapshots
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- data/upstream; then
+            exit 0
+          fi
+          {
+            echo "The weekly raw-source sync changed generated metadata."
+            echo
+            echo '```text'
+            git diff --stat -- data/upstream
+            echo '```'
+            echo
+            echo "Run \`make sync\`, inspect status/fidelity effects, and update curated cards deliberately."
+          } > /tmp/upstream-drift.md
+          count=$(gh issue list --state open --search '"Upstream metadata drift detected" in:title' --json number --jq length)
+          if [ "$count" -eq 0 ]; then
+            gh issue create --title "Upstream metadata drift detected" --body-file /tmp/upstream-drift.md
+          fi
+          exit 1

@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-08-14",
+  "items": [
+    {
+      "id": "hadamard-668",
+      "title": "Hadamard matrix of order 668",
+      "reason": "Epoch provisionally marked the target solved on 2026-08-14 after an exact-construction report, while the pinned formal repository can still look open; a primary paper and full artifact audit are pending.",
+      "state": "provisionally_solved_pending_primary_publication",
+      "do_not_label": "open",
+      "sources": [
+        "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/Wikipedia/Hadamard.lean",
+        "https://epoch.ai/frontiermath/open-problems/hadamard"
+      ],
+      "recheck_after": "2026-09-01"
+    },
+    {
+      "id": "erdos-848-status-mismatch",
+      "title": "Erdős #848",
+      "reason": "The current formal artifact and the structured Erdős metadata expose different solution/formal-status signals.",
+      "state": "status_conflict",
+      "do_not_label": "curated_open",
+      "sources": [
+        "https://www.erdosproblems.com/848",
+        "https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/848.lean"
+      ],
+      "recheck_after": "2026-09-01"
+    },
+    {
+      "id": "oeis-open-unscreened",
+      "title": "Unfiltered OEIS Open Problems entries",
+      "reason": "Recent public proof runs changed the solved set quickly; mathematical significance and translation fidelity vary.",
+      "state": "requires_solution_filter_and_semantic_review",
+      "do_not_label": "active_queue",
+      "sources": [
+        "https://arxiv.org/abs/2608.11941",
+        "https://github.com/epoch-research/LeanOpenProblems-results"
+      ],
+      "recheck_after": "2026-08-21"
+    },
+    {
+      "id": "famous-moonshots-default",
+      "title": "RH, BSD, P versus NP and similar headline conjectures",
+      "reason": "They are valuable but generally lack dense feedback, bounded milestones and affordable independent verification for a default agent queue.",
+      "state": "watch_only_unless_milestone_is_frozen",
+      "do_not_label": "agent_ready",
+      "sources": [
+        "https://aimath.org/pastworkshops/aint26problemlist.pdf"
+      ],
+      "recheck_after": "2027-01-01"
+    },
+    {
+      "id": "symmetric-weighing-matrix-16-status",
+      "title": "Proposed SW(25,16), SW(27,16), SW(29,16) targets",
+      "reason": "An independent scout proposed these as remaining symmetric cases, but the readily found primary literature mixes general W(n,16) and symmetric SW(n,16), and newer 2026 work changes the symmetric table. The target is not stable enough to publish as open.",
+      "state": "variant_and_status_ambiguity",
+      "do_not_label": "open",
+      "sources": [
+        "https://www.sciencedirect.com/science/article/pii/S0012365X24000396",
+        "https://arxiv.org/abs/2603.17552"
+      ],
+      "recheck_after": "2026-09-01"
+    }
+  ]
+}

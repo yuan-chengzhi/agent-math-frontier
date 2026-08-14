@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-08-14",
+  "collections": [
+    {
+      "id": "erdos-problems",
+      "name": "Erdős Problems",
+      "canonical_url": "https://www.erdosproblems.com/",
+      "data_url": "https://github.com/teorth/erdosproblems",
+      "ingestion": "full_metadata_index",
+      "trust_role": "structured lead source; every selected problem needs a fresh status and intent audit",
+      "snapshot_revision": "360e19847f19fac2bc5ae97150133e634598d378",
+      "snapshot_note": "1,217 records in the repository snapshot; statements are not mirrored here",
+      "license": "Apache-2.0",
+      "priority": "A"
+    },
+    {
+      "id": "formal-conjectures",
+      "name": "Formal Conjectures",
+      "canonical_url": "https://google-deepmind.github.io/formal-conjectures/",
+      "data_url": "https://github.com/google-deepmind/formal-conjectures",
+      "ingestion": "full_open_declaration_index",
+      "trust_role": "canonical proof-assistant artifact source; not an authority on fidelity or current open status",
+      "snapshot_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+      "snapshot_note": "current snapshot contains about 1,300 declarations tagged research/open; one problem may have several declarations",
+      "license": "Apache-2.0 code; generally CC BY 4.0 mathematical content; upstream exceptions apply",
+      "priority": "A"
+    },
+    {
+      "id": "oeis-open",
+      "name": "OEIS Open Problems",
+      "canonical_url": "https://arxiv.org/abs/2608.11941",
+      "data_url": "https://github.com/epoch-research/LeanOpenProblems",
+      "ingestion": "linked_only_pending_solution_filter",
+      "trust_role": "large Lean candidate pool requiring significance, fidelity and solved-result filtering",
+      "snapshot_revision": "a08ae162692cab8f6c485dc9c7081d2deb07d33c",
+      "snapshot_note": "492 Lean statements; the 2026-08 paper reports 147 resolved, so no entry is promoted from the raw set automatically",
+      "license": "MIT repository code; OEIS source material CC BY-SA 4.0",
+      "priority": "A"
+    },
+    {
+      "id": "frontiermath-open",
+      "name": "FrontierMath Open Problems",
+      "canonical_url": "https://epoch.ai/frontiermath/open-problems",
+      "data_url": "https://epoch.ai/frontiermath/open-problems",
+      "ingestion": "manual_curation",
+      "trust_role": "small, precise expert-authored source; status is volatile and public verifiers may need reconstruction",
+      "snapshot_revision": "web-2026-08-14",
+      "snapshot_note": "only individually audited pages enter the curated layer",
+      "license": "Epoch AI content reuse with attribution; verify page terms for artifacts",
+      "priority": "A"
+    },
+    {
+      "id": "aim-aint26",
+      "name": "AIM: AI and Number Theory 2026 problem list",
+      "canonical_url": "https://aimath.org/pastworkshops/aint26.html",
+      "data_url": "https://aimath.org/pastworkshops/aint26problemlist.pdf",
+      "ingestion": "manual_curation",
+      "trust_role": "expert workshop list explicitly stratified by where AI may help",
+      "snapshot_revision": "2026-05-public-version",
+      "snapshot_note": "71 prompts; only precise construction or bounded-milestone cards are selected",
+      "license": "link and paraphrase only unless AIM grants broader reuse",
+      "priority": "A"
+    },
+    {
+      "id": "alphaevolve-problems",
+      "name": "AlphaEvolve Repository of Problems",
+      "canonical_url": "https://google-deepmind.github.io/alphaevolve_repository_of_problems/",
+      "data_url": "https://github.com/google-deepmind/alphaevolve_results",
+      "ingestion": "template_and_evaluator_reference",
+      "trust_role": "source of construction-search task patterns and evaluators, not a blanket list of still-open targets",
+      "snapshot_revision": "web-2026-08-14",
+      "snapshot_note": "freeze an exact dimension, field and current record before promoting a target",
+      "license": "Apache-2.0 / CC BY as marked upstream",
+      "priority": "A-"
+    },
+    {
+      "id": "optimization-problems",
+      "name": "Optimization Problems in Mathematics",
+      "canonical_url": "https://teorth.github.io/optimizationproblems/",
+      "data_url": "https://github.com/teorth/optimizationproblems",
+      "ingestion": "manual_curation",
+      "trust_role": "living source for bound-improvement tasks; starred and newly updated claims need independent checking",
+      "snapshot_revision": "web-2026-08-14",
+      "snapshot_note": "record improvement and exact determination must be separate targets",
+      "license": "Apache-2.0 repository",
+      "priority": "A-"
+    },
+    {
+      "id": "green-100",
+      "name": "Ben Green's 100 open problems",
+      "canonical_url": "https://people.maths.ox.ac.uk/greenbj/papers/open-problems.pdf",
+      "data_url": "https://github.com/google-deepmind/formal-conjectures/tree/main/FormalConjectures/GreensOpenProblems",
+      "ingestion": "manual_curation",
+      "trust_role": "expert source with a substantial Lean subset; many entries remain too asymptotic for direct agent search",
+      "snapshot_revision": "2026-01-list / formal-conjectures-b33d867",
+      "snapshot_note": "use the author list for intent and the Lean files only as formal artifacts",
+      "license": "link and paraphrase; Lean repository terms apply to formal artifacts",
+      "priority": "B+"
+    },
+    {
+      "id": "small-ramsey-survey",
+      "name": "Dynamic Survey of Small Ramsey Numbers",
+      "canonical_url": "https://www.cs.rit.edu/~spr/ElJC/eline.html",
+      "data_url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/DS1",
+      "ingestion": "status_reference",
+      "trust_role": "authoritative dynamic bound reference for finite Ramsey targets",
+      "snapshot_revision": "revision-18-2026-04-24",
+      "snapshot_note": "consult again immediately before an attack",
+      "license": "publisher terms apply",
+      "priority": "A"
+    },
+    {
+      "id": "house-of-graphs-cages",
+      "name": "House of Graphs cage table",
+      "canonical_url": "https://houseofgraphs.org/meta-directory/cages",
+      "data_url": "https://houseofgraphs.org/meta-directory/cages",
+      "ingestion": "dynamic_record_reference",
+      "trust_role": "current upper-bound table with downloadable finite graph certificates",
+      "snapshot_revision": "web-2026-08-14",
+      "snapshot_note": "freeze the table entry and graph6 baseline before each search",
+      "license": "check individual graph provenance before redistribution",
+      "priority": "A"
+    },
+    {
+      "id": "degree-diameter-table",
+      "name": "Table of large graphs with given degree and diameter",
+      "canonical_url": "https://web.mat.upc.edu/francesc.comellas/delta-d/taula_delta_d.html",
+      "data_url": "https://data.mendeley.com/datasets/d75dzbjd4k",
+      "ingestion": "dynamic_record_reference",
+      "trust_role": "maintainer-run record table with adjacency lists and some Sage verification scripts",
+      "snapshot_revision": "web-2026-08-14-last-changed-2026-08-13",
+      "snapshot_note": "the (3,9) entry is 600 and traces to a 2008 update; other cells changed as recently as August 2026",
+      "license": "dataset and individual construction terms apply",
+      "priority": "A"
+    },
+    {
+      "id": "srg-tables",
+      "name": "Brouwer strongly regular graph parameter table mirror",
+      "canonical_url": "https://jaanos.github.io/tables/graphs/srg/srgtab51-100.html",
+      "data_url": "https://github.com/jaanos/tables",
+      "ingestion": "dynamic_status_reference",
+      "trust_role": "daily mirrored feasibility/existence table; selected unknown rows require literature recheck",
+      "snapshot_revision": "dcc3501ff681f68b1cf45318742cbce2692ba21a / web-checked-2026-08-14",
+      "snapshot_note": "the row (69,20,7,5) is marked unknown in the current mirror",
+      "license": "link and paraphrase; consult source-table terms",
+      "priority": "A"
+    },
+    {
+      "id": "costas-arrays",
+      "name": "Costas array research records",
+      "canonical_url": "https://www.sfu.ca/~jed/Research/costas.html",
+      "data_url": "https://arxiv.org/abs/1102.5727",
+      "ingestion": "manual_status_audit",
+      "trust_role": "construction and exhaustive-search record source for the smallest unknown orders",
+      "snapshot_revision": "literature-rechecked-2026-08-14",
+      "snapshot_note": "order 32 remains a reported smallest unknown construction order, but a 48-hour novelty search is required before attack",
+      "license": "link and paraphrase only",
+      "priority": "B+"
+    }
+  ]
+}

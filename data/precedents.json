@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-08-14",
+  "precedents": [
+    {
+      "id": "funsearch-2023",
+      "name": "FunSearch",
+      "url": "https://www.nature.com/articles/s41586-023-06924-6",
+      "observed_capability": "new finite constructions through short programs and a fast scoring function",
+      "selection_implication": "prefer compact candidates, dense feedback and a deterministic final checker",
+      "caveat": "record improvement is not the same as settling the surrounding conjecture"
+    },
+    {
+      "id": "alphaevolve-2025",
+      "name": "AlphaEvolve",
+      "url": "https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/",
+      "observed_capability": "algorithmic search improved some matrix, geometry and combinatorial records",
+      "selection_implication": "construction and optimization tasks with executable evaluators are the strongest current default",
+      "caveat": "evaluators can be exploited; numeric candidates need exact or interval certification"
+    },
+    {
+      "id": "alphaproof-nexus-2026",
+      "name": "AlphaProof Nexus open-problem sweep",
+      "url": "https://arxiv.org/abs/2605.22763",
+      "observed_capability": "reported proofs for 9 of 353 formalized Erdős problems and 44 of 492 OEIS statements",
+      "selection_implication": "Lean proof search works best on decomposable statements supported by mature libraries",
+      "caveat": "the study found mistranslations and drafts that merely moved the hard step into an unproved lemma"
+    },
+    {
+      "id": "oeis-open-2026",
+      "name": "OEIS Open Problems",
+      "url": "https://arxiv.org/abs/2608.11941",
+      "observed_capability": "low-cost generic agents reportedly resolved 147 of 492 autoformalized conjectures",
+      "selection_implication": "large formal pools are useful for screening and proof closure",
+      "caveat": "importance is uneven, references are often sparse, and formalization fidelity must be audited"
+    },
+    {
+      "id": "openai-unit-distance-2026",
+      "name": "Disproof of an Erdős unit-distance conjecture",
+      "url": "https://openai.com/index/model-disproves-discrete-geometry-conjecture/",
+      "observed_capability": "a natural-language research agent proposed a high-value construction and proof that external mathematicians checked",
+      "selection_implication": "reserve a minority track for precise, high-value non-formal problems with expert review",
+      "caveat": "human verification and exposition remained essential, and the broader asymptotic problem was not closed"
+    },
+    {
+      "id": "aletheia-erdos-audit-2026",
+      "name": "Aletheia Erdős sweep",
+      "url": "https://arxiv.org/abs/2601.22401",
+      "observed_capability": "bulk generation produced many superficially plausible answers",
+      "selection_implication": "status, intended meaning and novelty review are more important than raw solve counts",
+      "caveat": "of 200 adjudicated candidates reported in the paper, only 13 addressed the intended problem, and some were already known"
+    },
+    {
+      "id": "busy-beaver-5-2025",
+      "name": "Formal determination of BB(5)",
+      "url": "https://arxiv.org/abs/2509.12337",
+      "observed_capability": "a massive search was decomposed into machine-level certificates checked in Coq",
+      "selection_implication": "large questions become agent-suitable when split into independently certifiable classes",
+      "caveat": "certificate engineering and trusted-computing-base review are substantial research work"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+name: Independent candidate review
+description: Audit intent, status, novelty, suitability or evaluator safety independently of the solver.
+title: "Review: "
+labels: []
+body:
+  - type: dropdown
+    id: axis
+    attributes:
+      label: Review axis
+      options:
+        - Intended-statement fidelity
+        - Open-status and literature audit
+        - Evaluator red team
+        - Mathematical value and partial milestones
+        - Selection-bias / portfolio review
+    validations:
+      required: true
+  - type: input
+    id: problem
+    attributes:
+      label: Problem ID or portfolio scope
+      placeholder: cage-cubic-g13-record
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and conflicting evidence
+      description: Link primary sources, include dates/revisions, and preserve contradictions.
+    validations:
+      required: true
+  - type: dropdown
+    id: decision
+    attributes:
+      label: Recommendation
+      options:
+        - Keep in current stage
+        - Promote after named conditions
+        - Demote
+        - Quarantine
+        - Retire as solved or stale
+    validations:
+      required: true
+  - type: textarea
+    id: conditions
+    attributes:
+      label: Conditions, kill criteria, and next recheck date
+    validations:
+      required: true
