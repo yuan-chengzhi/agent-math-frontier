@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/cage-cubic-g13-record/candidate.schema.json",
+  "title": "Cubic girth-at-least-13 record graph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "n", "edges"],
+  "properties": {
+    "schema": {"const": "AMF_CAGE3G13_GRAPH_1"},
+    "n": {"type": "integer", "minimum": 4, "maximum": 271},
+    "edges": {
+      "type": "array",
+      "maxItems": 406,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [{"type": "integer", "minimum": 0, "maximum": 270}, {"type": "integer", "minimum": 0, "maximum": 270}],
+        "items": false
+      }
+    }
+  }
+}

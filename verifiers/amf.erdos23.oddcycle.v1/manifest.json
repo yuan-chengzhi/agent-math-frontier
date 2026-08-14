@@ -1,0 +1,12 @@
+{
+  "schema": "AMF_VERIFIER_MANIFEST_1",
+  "verifier_id": "amf.erdos23.oddcycle.v1",
+  "binds_verification_mode": "exact_graph_plus_optimization_certificate_then_lean",
+  "version": "v1",
+  "command": ["verifiers/amf.experimental-finite.v1/check.py", "erdos23-oddcycle", "--candidate", "{candidate_path}"],
+  "working_directory": ".",
+  "timeout_seconds": 120,
+  "maximum_output_bytes": 65536,
+  "network": false,
+  "source_artifacts": [{"path": "verifiers/amf.experimental-finite.v1/check.py", "bytes": 27519, "sha256": "eb505d203fa6c96101701ee9370cc8a0c820813062915f635ca36887bb84e02d"}]
+}

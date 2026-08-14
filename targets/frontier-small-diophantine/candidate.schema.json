@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/frontier-small-diophantine/candidate.schema.json",
+  "title": "Three large solutions to the first unresolved small Diophantine equation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "equation_id", "solutions"],
+  "properties": {
+    "schema": {"const": "AMF_SMALL_DIOPHANTINE_EQ1_1"},
+    "equation_id": {"const": "z2+y2z+x3-2"},
+    "solutions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["x", "y", "z"],
+        "properties": {
+          "x": {"$ref": "#/$defs/signedDecimal"},
+          "y": {"$ref": "#/$defs/signedDecimal"},
+          "z": {"$ref": "#/$defs/signedDecimal"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "signedDecimal": {"type": "string", "pattern": "^(0|-?[1-9][0-9]{0,4095})$"}
+  }
+}

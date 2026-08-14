@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/schemas/experimental-portfolio.v1.schema.json",
+  "title": "AMF experimental portfolio version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "as_of", "source_schema_version", "problem_card_schema", "problem_catalog_sha256", "verifier_registry_sha256", "summary", "targets", "portfolio_ref"],
+  "properties": {
+    "schema": {"const": "AMF_EXPERIMENTAL_PORTFOLIO_1"},
+    "as_of": {"type": "string", "format": "date"},
+    "source_schema_version": {"const": 1},
+    "problem_card_schema": {"const": "AMF_PROBLEM_CARD_1"},
+    "problem_catalog_sha256": {"$ref": "#/$defs/sha256"},
+    "verifier_registry_sha256": {"$ref": "#/$defs/sha256"},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audited_active", "experimental_active", "verifier_regression_only", "total"],
+      "properties": {
+        "audited_active": {"type": "integer", "minimum": 0},
+        "experimental_active": {"type": "integer", "minimum": 0},
+        "verifier_regression_only": {"type": "integer", "minimum": 0},
+        "total": {"type": "integer", "minimum": 1}
+      }
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["problem_id", "problem_card_sha256", "formalization_level", "strict_stage", "role", "hard_gates", "claim_scope", "verification_mode", "verifier_id", "target_card"],
+        "properties": {
+          "problem_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,127}$"},
+          "problem_card_sha256": {"$ref": "#/$defs/sha256"},
+          "formalization_level": {"enum": ["proof_assistant", "executable_spec"]},
+          "strict_stage": {"enum": ["raw", "curated", "active", "retired"]},
+          "role": {"enum": ["audited_active", "experimental_active", "verifier_regression_only"]},
+          "hard_gates": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["open_status", "exact_target", "verification_path", "valuable_partial_progress", "reproducibility"],
+            "properties": {
+              "open_status": {"$ref": "#/$defs/gate"},
+              "exact_target": {"$ref": "#/$defs/gate"},
+              "verification_path": {"$ref": "#/$defs/gate"},
+              "valuable_partial_progress": {"$ref": "#/$defs/gate"},
+              "reproducibility": {"$ref": "#/$defs/gate"}
+            }
+          },
+          "claim_scope": {"enum": ["FULL_PROBLEM", "RECORD_IMPROVEMENT", "BOUNDED_COUNTEREXAMPLE", "FINITE_INSTANCE", "PARAMETER_RANGE", "SUBCLASS_RESULT", "FORMALIZATION_MILESTONE"]},
+          "verification_mode": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
+          "verifier_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,110}\\.v[1-9][0-9]{0,15}$"},
+          "target_card": {"$ref": "#/$defs/fileBinding"}
+        }
+      }
+    },
+    "portfolio_ref": {"type": "string", "pattern": "^experimental-portfolio/sha256/[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "gate": {"enum": ["pass", "conditional", "fail", "unknown"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "fileBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 1073741824},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

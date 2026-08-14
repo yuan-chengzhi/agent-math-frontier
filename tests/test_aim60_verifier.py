@@ -14,6 +14,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 VERIFIER = ROOT / "verifiers" / "amf.aim60.certificate.v1"
+VERIFIER_V2 = ROOT / "verifiers" / "amf.aim60.certificate.v2"
 TARGET = ROOT / "targets" / "aim-60-first-prime"
 BASELINE = TARGET / "evidence" / "baseline"
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -36,6 +37,7 @@ def load_module(name: str, path: Path):
 
 
 CHECKER = load_module("amf_aim60_checker", VERIFIER / "check.py")
+CHECKER_V2 = load_module("amf_aim60_checker_v2", VERIFIER_V2 / "check.py")
 
 
 def canonical_bytes(value: object) -> bytes:
@@ -79,6 +81,7 @@ class Aim60VerifierTests(unittest.TestCase):
             load_json(ROOT / "data" / "verifiers.json"), root=ROOT
         )
         self.assertIn(CHECKER.VERIFIER_ID, registry)
+        self.assertIn(CHECKER_V2.VERIFIER_ID, registry)
         manifest = registry[CHECKER.VERIFIER_ID]["manifest_value"]
         self.assertEqual(
             manifest["binds_verification_mode"],
@@ -101,9 +104,9 @@ class Aim60VerifierTests(unittest.TestCase):
             expected_problem_card_sha256=canonical_sha256(problem),
             expected_source_revision=problem["formalization"]["revision"],
         )
-        self.assertEqual(card["verifier_id"], CHECKER.VERIFIER_ID)
+        self.assertEqual(card["verifier_id"], CHECKER_V2.VERIFIER_ID)
         self.assertEqual(card["claim_scope"], "FINITE_INSTANCE")
-        self.assertIn("does not establish", card["canonical_statement"])
+        self.assertIn("not global optimality or novelty", card["canonical_statement"])
         self.assertFalse((TARGET / "target-bundle.json").exists())
         for pattern in (
             "*receipt*.json",
@@ -112,6 +115,16 @@ class Aim60VerifierTests(unittest.TestCase):
             "budget-*.json",
         ):
             self.assertEqual(list(TARGET.rglob(pattern)), [])
+
+    def test_v2_enforces_the_provisional_public_floor_and_rebrands_results(self) -> None:
+        candidate = copy.deepcopy(self.baseline)
+        candidate["schema"] = CHECKER_V2.CANDIDATE_SCHEMA
+        candidate["first_prime_x"] = CHECKER_V2.PROVISIONAL_PUBLIC_BASELINE_X
+        result = CHECKER_V2.evaluate_document(candidate)
+        self.assertFalse(result["accepted"])
+        self.assertEqual(result["reason_code"], "FIRST_PRIME_X_OUT_OF_RANGE")
+        self.assertEqual(result["verifier_id"], CHECKER_V2.VERIFIER_ID)
+        self.assertEqual(CHECKER_V2.MINIMUM_FIRST_PRIME_X, 1_455_091)
 
     def test_primary_source_metadata_freezes_only_the_public_example(self) -> None:
         metadata = load_json(BASELINE / "source-metadata.json")

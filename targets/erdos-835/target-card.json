@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "erdos-835",
+  "problem_card_sha256": "20105fc0a5f58880e1c593ae23ed5c97286b8557fffd6cc93f9f3626707387ad",
+  "canonical_statement": "For k=10, color every 10-subset of {0,...,19} with one of the 11 colors {0,...,10} so that, for every 11-subset A, the eleven 10-subsets of A receive all eleven colors. The color table is ordered lexicographically as Python itertools.combinations(range(20),10). A successful k=10 construction witnesses the unrestricted existential Erdős problem; rejection or exhaustion at k=10 does not settle other k.",
+  "source_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "amf.erdos835.k10.v1 checks exactly 184756 table entries and all 167960 eleven-subset constraints and accepts. A no-sorry Lean closure and independent status/fidelity review are still required before a resolution claim.",
+  "partial_progress_criterion": "Retain certified search-space reductions, symmetry breaking, a reproducible SAT encoding, and independently checkable LRAT evidence excluding k=10; a negative k=10 result is partial progress only.",
+  "stop_conditions": [
+    "A current source establishes or excludes k=10 before the run.",
+    "The table ordering or coloring convention cannot be reconstructed independently.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/erdos-835/candidate.schema.json", "bytes": 701, "sha256": "f7a42cf7053ac44e38fe681361520110c41bcb922acd0aa07c809dc81788ca86"},
+  "verifier_id": "amf.erdos835.k10.v1"
+}

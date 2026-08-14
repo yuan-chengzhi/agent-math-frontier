@@ -5,8 +5,9 @@
 截至 **2026-08-14**，首版包含：
 
 - 17 张人工问题卡：6 题有固定 Lean theorem skeleton，8 题尚无完整形式化但有精确可执行终检，3 题仍需 CAS/领域专家审核；
-- 9 题进入“优先审核”；其中 3 题在独立 statement/open-status 审查、
-  verifier 红队和冻结预算全部通过后晋升为 `active`；
+- 14 题已有机器可寻址实验包：6 题绑定固定 Lean 陈述，8 题绑定精确
+  executable spec；其中 3 题通过完整审查成为严格 `active`，11 题可作
+  未审计的 `experimental_active`；
 - 1,217 条 Erdős Problems 元数据，以及 Formal Conjectures 中 1,301 个 `research open` 声明的可再生快照；
 - 5 个隔离案例，用来保存状态冲突、变体歧义和刚发生的解决声明。
 
@@ -18,9 +19,10 @@
 - [完整问题卡](catalog/problem-cards.md)：目标、证书、硬门槛、九维向量和风险。
 - [方法](METHODOLOGY.md)：怎样定义“适合 agent”，以及怎样防止选题固化。
 - [独立评审记录](docs/independent-review-2026-08-14.md)：三条独立调研怎样改变首版。
+- [14 题实验组合](docs/experimental-portfolio.md)：每题实际检查什么、结论边界和运行入口。
 - [隔离项](catalog/quarantine.md)：为什么数据库标签或 Lean 文件不能单独作为依据。
 
-当前冻结给首轮多题研究实验的三条 active target 是：
+当前严格 active target 仍是三条：
 
 1. degree–diameter `(3,9)`：构造至少 601 顶点、最大度数至多 3、
    直径至多 9 的图；
@@ -30,8 +32,13 @@
    单项式基系数为负的精确反例。
 
 它们覆盖记录构造、开放图论反例和代数组合有界反例，并都具有严格的
-target-specific executable verifier。其余候选仍留在 curated/quarantine 层；
-尤其 AIM #60 因公开例子已超过原冻结阈值而未获 open-status gate。
+target-specific executable verifier。为了先实验再决定是否投入完整审核，另有
+[`data/experimental-portfolio.json`](data/experimental-portfolio.json)：它精确包含
+全部 14 个机器可寻址目标，但不把缺失的独立审核和红队收据冒充已经完成。
+因此实验口径是 14/14 active（3 个 `audited_active` + 11 个
+`experimental_active`），严格研究结论口径仍只有 3 个 active。
+AIM #60 的旧 v1 保留作回归，实验组合选择临时重设到 1455091 门槛的 v2；
+其 open-status gate 仍为 `fail`，所以不能被当作已确认的新纪录攻击。
 
 ## 这里怎样使用“形式化”
 
@@ -71,7 +78,7 @@ make sync
 
 ## 机器可执行的 active 边界
 
-`shortlist` 仍只是人工审核优先级。唯一可供实验 host 导入的攻击面是
+`shortlist` 仍只是人工审核优先级。严格、已审计的攻击面是
 [`data/active-portfolio.json`](data/active-portfolio.json)，它由
 `scripts/export_active.py` 从完整问题账本和内容寻址 target bundle
 确定性导出。当前导出精确包含上述 3 个 active target。
@@ -108,6 +115,32 @@ JSON 逻辑身份使用 `scripts/contracts.py` 的 canonical encoding；文件�
 且只接受 repository 内的普通非符号链接文件。版本化 JSON Schema 位于
 `schemas/`。
 
+## 先跑的 experimental 边界
+
+`data/experimental-portfolio.json` 是 14 题的实验入口。每题至少具备：冻结
+target card、候选 JSON Schema、与问题语义匹配的版本化离线 verifier。其角色分为：
+
+- `audited_active`：3 题，亦存在完整 target bundle；
+- `experimental_active`：11 题，已开放给 solver/evaluator 实验，但尚不能据此声称
+  最新开放状态、checker 红队和独立题意审核均已通过；
+- `verifier_regression_only`：该角色由 schema 保留；当前导出为 0。AIM #60 的旧 v1
+  仍在注册表中作回归，但 14 题组合选择 v2 实验目标。
+
+```bash
+# 查看 14 个机器入口
+python scripts/verify_candidate.py --list
+
+# 按 problem ID 运行内容固定的 verifier
+python scripts/verify_candidate.py costas-order-32 candidate.json
+
+# 检查 14 题导出没有哈希漂移或缺件
+python scripts/export_experimental.py --check
+```
+
+这里的 6 个 `proof_assistant` 项仍只表示原始完整命题有固定 Lean 陈述；当前有限
+候选 verifier 与最终 no-sorry Lean 闭合是两个独立阶段。8 个 `executable_spec`
+项则没有被改写成“已有证明助手形式化”。
+
 GitHub Actions 会每周检查上游整库漂移，并在每月 1 日、15 日排入一张独立 portfolio-review 工单。工单只是要求一个与 solver 分离的 agent/reviewer 开始审计，不会把定时任务冒充已完成评审。
 
 ## 仓库层级
@@ -117,7 +150,8 @@ data/upstream/     可再生 raw 索引，不等于开放或适合
 data/problems.json 人工精选问题卡，是判断的唯一数据源
 data/verifiers.json 可执行 verifier 注册表；空注册表是合法状态
 data/active-portfolio.json 唯一 fail-closed active 导出
-targets/           仅存已冻结、内容寻址的 active target bundle
+data/experimental-portfolio.json 14 题机器实验导出
+targets/           实验 target card；严格 active 项另有完整 target bundle
 schemas/           problem/target/receipt 的严格版本化 schema
 catalog/           面向阅读的自动生成视图
 docs/              独立审计与决策记录

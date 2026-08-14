@@ -1,21 +1,21 @@
 {
   "schema": "AMF_TARGET_CARD_1",
   "problem_id": "aim-60-first-prime",
-  "problem_card_sha256": "048196286e6b94ddfeb736abea4dcda5898a8394a151a1299c2e4a7b584c436c",
-  "canonical_statement": "Produce a positive integer a with 1 <= a < 10^20 and an integer x0 with 616981 <= x0 <= 10000000 such that x^12+a is composite for every positive integer x with 1 <= x < x0, while x0^12+a is prime. This establishes only one finite certified instance strictly beating the frozen public example a=488669, x0=616980; it does not establish current-record status or global optimality over a < 10^20.",
+  "problem_card_sha256": "de580d02a3c94923e8a1458b917244fc06969acb9f43278881ea4810e7ba05d6",
+  "canonical_statement": "Produce a positive integer a with 1<=a<10^20 and an integer x0 with 1455091<=x0<=10000000 such that x^12+a is composite for every positive integer 1<=x<x0, while x0^12+a is prime. The threshold is one above the strongest same-form public example found in the 2026-08-14 search (a=26060579, reported x0=1455090). That report is a provisional experimental baseline, not an independently certified current world record. Acceptance establishes the exact finite instance only, not global optimality or novelty.",
   "source_revision": "aim-aint26-2026-05",
   "claim_scope": "FINITE_INSTANCE",
-  "success_criterion": "The content-pinned amf.aim60.certificate.v1 checker accepts the strict JSON certificate after independently enumerating every positive predecessor from x=1, validating every congruence cover rule and remaining non-trivial factor, and verifying an Atkin--Morain ECPP proof of primality for x0^12+a. Separate statement-fidelity and open-status/novelty review remains mandatory before activation or any public record claim.",
-  "partial_progress_criterion": "Reproducible candidates with a later but still sub-threshold first prime, exact modular covers, independently certified factors, stronger search reductions, or reusable certificate-generation improvements are retained as progress but do not satisfy this frozen threshold target.",
+  "success_criterion": "The content-pinned amf.aim60.certificate.v2 checker accepts after enumerating every positive predecessor, validating every congruence rule and remaining exact factor, and checking an Atkin--Morain ECPP proof for x0^12+a. A refreshed record search and independent certification of the provisional baseline remain mandatory before any novelty claim.",
+  "partial_progress_criterion": "Retain an independent certificate reconstruction for the reported x0=1455090 instance, exact candidates between the old 616980 example and the v2 threshold, stronger congruence covers, and reusable certificate-generation improvements.",
   "stop_conditions": [
-    "Independent statement-fidelity review rejects the positive-a interpretation or the finite 10000000 resource cap as unsuitable for the intended first launch.",
-    "The frozen public example or its exact certificate cannot be independently reconstructed, or verifier integrity cannot be established.",
-    "The separately approved experiment resource budget is exhausted."
+    "A current source reports an in-domain first-prime index at least as large as the v2 threshold.",
+    "The provisional 1455090 baseline or the positive-a interpretation fails independent reconstruction.",
+    "The verifier reaches its deterministic resource limits or the separately approved experiment budget is exhausted."
   ],
   "candidate_schema": {
-    "path": "targets/aim-60-first-prime/candidate.schema.json",
-    "bytes": 2727,
-    "sha256": "008b98306ce0033b2696816ac8331a7bb494decab5e0f0ddb4d956e2ec2a5052"
+    "path": "targets/aim-60-first-prime/candidate.v2.schema.json",
+    "bytes": 2604,
+    "sha256": "280a3012cc06accd08e25d7f52f79eaa000b22fca0fa5988a344b39e3d64e096"
   },
-  "verifier_id": "amf.aim60.certificate.v1"
+  "verifier_id": "amf.aim60.certificate.v2"
 }

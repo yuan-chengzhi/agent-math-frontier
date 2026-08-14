@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Strict, dependency-free machine contracts for active research targets.
+"""Strict, dependency-free machine contracts for research targets.
 
 The Markdown catalog is a human view.  This module is the fail-closed boundary
-used by validation and by the PMW active-portfolio exporter.  JSON hashes are
-computed over a canonical representation; file bindings hash exact raw bytes.
+used by validation and by the active/experimental portfolio exporters. JSON
+hashes are computed over a canonical representation; file bindings hash exact
+raw bytes.
 """
 
 from __future__ import annotations
@@ -29,6 +30,7 @@ REVIEW_RECEIPT_SCHEMA = "AMF_REVIEW_RECEIPT_1"
 RED_TEAM_RECEIPT_SCHEMA = "AMF_RED_TEAM_RECEIPT_1"
 BUDGET_RECEIPT_SCHEMA = "AMF_BUDGET_RECEIPT_2"
 ACTIVE_PORTFOLIO_SCHEMA = "AMF_ACTIVE_PORTFOLIO_1"
+EXPERIMENTAL_PORTFOLIO_SCHEMA = "AMF_EXPERIMENTAL_PORTFOLIO_1"
 
 FORMALIZATION_LEVELS = frozenset({
     "proof_assistant",
@@ -860,6 +862,7 @@ __all__ = [
     "BASELINE_RECEIPT_SCHEMA",
     "BUDGET_RECEIPT_SCHEMA",
     "ContractError",
+    "EXPERIMENTAL_PORTFOLIO_SCHEMA",
     "MAX_BOUND_FILE_BYTES",
     "MAX_JSON_BYTES",
     "PROBLEM_CARD_SCHEMA",

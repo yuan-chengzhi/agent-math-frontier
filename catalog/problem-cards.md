@@ -176,14 +176,14 @@
 - ID / 决策：`aim-60-first-prime` / 隔离
 - 来源状态：unsurprising if AI can do in the near future；可信度 high；2026-08-14 核查
 - 形式化强度：精确可执行验证；fidelity `expert_workshop_primary`
-- 目标：当前 616980 门槛已被公开实例超过；本包仅保留为 verifier 回归/复现实例，重新激活前必须先独立认证并重设最新公开基线。
+- 目标：实验 v2 暂以本轮公开检索找到的最强同形报告 x0=1455090 为门槛，寻找 x0≥1455091 的完整证书；该门槛尚不是独立认证的世界纪录，因此只用于先跑实验。
 - 成功工件：a、此前所有值合数的因子证书、首个素值的素性证书和完整搜索代码。
-- 有价值的部分进展：独立认证已公开的更强实例、厘清最新公开基线、覆盖同余构造或更快的认证流水线。
-- 验证：`integer_factor_and_primality_certificates` — 记录候选可严格检查；证明 a<10^20 中全局最优是完全不同且可能不可承受的任务。
+- 有价值的部分进展：独立认证公开的 1455090 实例、厘清最新公开基线、覆盖同余构造或更快的认证流水线。
+- 验证：`integer_factor_and_primality_certificates` — v1 保留 616980 回归，v2 对 x0≥1455091 的候选作严格终检；是否刷新当前纪录和 a<10^20 中全局最优都是另外的任务。
 - 硬门槛：`open_status=fail；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=pass`
 - 九维向量：`验3 馈3 表3 拆2 具3 部3 值2 态3 资1`
-- 风险：616980 不是 a<10^20 范围的当前公开基线；已有公开实例报告到 x0=1455090。；筛选吞吐量不能代替每个合数和最终素数的独立证书。
-- 选择判断：很符合 generate-score-verify 循环；适合先做可复现的纪录改进。
+- 风险：1455090 是当前公开检索找到的临时下界，不是经维护者或独立证书确认的世界纪录；提交前必须再次刷新。；筛选吞吐量不能代替每个合数和最终素数的独立证书。
+- 选择判断：很符合 generate-score-verify 循环；v2 可先测 agent 搜索能力，但 open-status gate 保持 fail，直到临时基线被独立认证。
 
 ## 三正则 girth 13 图的 cage 上界纪录
 

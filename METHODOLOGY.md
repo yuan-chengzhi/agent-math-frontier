@@ -9,13 +9,15 @@
 ## 2. 三层池，而不是一张题单
 
 ```text
-raw catalog  ──状态/语义/许可审计──>  curated candidates  ──冻结 target card──>  active attacks
-     │                                      │                                  │
-     └─可过期、可冲突                       └─不是开跑授权                       └─保存全部成本与失败
+raw catalog ──审计──> curated candidates ──冻结接口──> experimental runs ──独立审核──> active attacks
+     │                    │                                  │                         │
+     └─可过期、可冲突     └─仍非机器入口                     └─可试验，不可冒充审查    └─保存全部成本与失败
 ```
 
 - `raw catalog`：可批量采集题库元数据，允许状态陈旧和重复。
 - `curated candidates`：有规范来源、可执行目标、验证路线、风险和部分进展定义。
+- `experimental runs`：已有内容寻址的 target card、候选 schema 和可运行 verifier；
+  允许先测 agent—任务匹配，但新颖性、statement fidelity 和 evaluator 红队仍可未完成。
 - `active attacks`：两名独立 reviewer 完成状态/题意审核，完整报告与 reviewer/session 过程证据已内容绑定，evaluator 已红队，预算与工件已冻结。
 
 结果不会直接覆盖题目状态；状态变化以追加事件记录。
@@ -43,6 +45,10 @@ raw catalog  ──状态/语义/许可审计──>  curated candidates  ──
 5. `reproducibility`：evaluator、依赖、种子、预算、输出和失败均可保留。
 
 任何 `conditional` 都是未完成工作，不可被高分抵消。
+
+实验层不降低这五个门槛，而是把“可以运行 verifier”与“已经获准提出研究结论”
+拆成两个状态。实验结果可用于决定是否值得支付完整审查成本；只有全部门槛为
+`pass` 且 receipts 齐全时，才进入严格 active 导出。
 
 ## 5. 九维向量，不求和
 

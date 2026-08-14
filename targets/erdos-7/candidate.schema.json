@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/erdos-7/candidate.schema.json",
+  "title": "Erdos 7 finite distinct odd-modulus covering system",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "classes"],
+  "properties": {
+    "schema": {"const": "AMF_ERDOS7_ODD_COVER_1"},
+    "classes": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 512,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["residue", "modulus"],
+        "properties": {
+          "residue": {"type": "integer", "minimum": 0, "maximum": 999999},
+          "modulus": {"type": "integer", "minimum": 3, "maximum": 1000000}
+        }
+      }
+    }
+  }
+}

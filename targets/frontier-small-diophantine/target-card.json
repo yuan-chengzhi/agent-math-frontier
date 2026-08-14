@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "frontier-small-diophantine",
+  "problem_card_sha256": "19ce95159c145d2dc60ee76488506d38adf27814c32ef96c1cfb3b8f1d9654ff",
+  "canonical_statement": "Find three integer solutions (x,y,z) with three distinct x values and |x|>10^50 to z^2+y^2*z+x^3-2=0. This freezes the first equation in the current nine-equation FrontierMath prompt, which was not among the three equations reported solved in the page's 2026-03-05 update. Acceptance resolves only this finite witness prompt, not the claim that the equation has infinitely many integer solutions and not the other eight equations.",
+  "source_revision": "frontiermath-page-2026-08-14",
+  "claim_scope": "FINITE_INSTANCE",
+  "success_criterion": "amf.diophantine.eq1.v1 parses arbitrary-precision canonical decimal coordinates, checks the three distinct large x values, substitutes exactly into the cubic equation, and accepts. A current novelty search remains required.",
+  "partial_progress_criterion": "Retain one or two new large solutions, a provable parametrization, exact algebraic transformations, and search methods that materially improve the known range.",
+  "stop_conditions": [
+    "The selected equation is reported solved or removed from the current prompt.",
+    "The candidate relies on an unproved parametrization rather than exact integer instances.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/frontier-small-diophantine/candidate.schema.json", "bytes": 1003, "sha256": "42904a85504407172e3c5f6ebe70cd897317b370462b9bc60727077a7928a9b3"},
+  "verifier_id": "amf.diophantine.eq1.v1"
+}

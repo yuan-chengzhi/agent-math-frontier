@@ -36,6 +36,105 @@
         "bytes": 588,
         "sha256": "4c6c63d7c63e7e96bd1b3e7dfc691c01ae130dbfa9b2db7583fccdf287d4e849"
       }
+    },
+    {
+      "verifier_id": "amf.aim60.certificate.v2",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.aim60.certificate.v2/manifest.json",
+        "bytes": 706,
+        "sha256": "5664f61dbea3fdb5e7102017e3ef8184985ca2ff4b2d449f758bfcca1e45fb5c"
+      }
+    },
+    {
+      "verifier_id": "amf.erdos307.exact.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.erdos307.exact.v1/manifest.json",
+        "bytes": 555,
+        "sha256": "f1ed0c960cd8ef8a4681674a808673e6092abce0414d473422a2537f212fcf64"
+      }
+    },
+    {
+      "verifier_id": "amf.erdos835.k10.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.erdos835.k10.v1/manifest.json",
+        "bytes": 576,
+        "sha256": "f161d8dc20a89887956c3cb8d65de123d2fbe53a5be952ce2197e99dedaa5779"
+      }
+    },
+    {
+      "verifier_id": "amf.erdos23.oddcycle.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.erdos23.oddcycle.v1/manifest.json",
+        "bytes": 592,
+        "sha256": "58a991efc3d9b700022805792f6e32ff81a513191b2b75b34f1d4d566d096446"
+      }
+    },
+    {
+      "verifier_id": "amf.erdos7.cover.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.erdos7.cover.v1/manifest.json",
+        "bytes": 568,
+        "sha256": "0a69e7543b9d5347a7e249842acece0e22f591c49dcf1c1aafb0c20aded7c9fe"
+      }
+    },
+    {
+      "verifier_id": "amf.r55.graph43.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.r55.graph43.v1/manifest.json",
+        "bytes": 570,
+        "sha256": "c133240e078ab9ff9da907d4f6e2f6579e478b574d131f6e52ae3787812ce5e8"
+      }
+    },
+    {
+      "verifier_id": "amf.book.range100.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.book.range100.v1/manifest.json",
+        "bytes": 554,
+        "sha256": "dd71f67178177e93209a272c4f685d59259bdcb7e055c15bc4ab3ebabfc1215c"
+      }
+    },
+    {
+      "verifier_id": "amf.diophantine.eq1.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.diophantine.eq1.v1/manifest.json",
+        "bytes": 568,
+        "sha256": "da2ccc4d56c25c59ea30825ac11ebb0f3d78b07a5d065dd1ed28d1782239dffe"
+      }
+    },
+    {
+      "verifier_id": "amf.cage3g13.exact.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.cage3g13.exact.v1/manifest.json",
+        "bytes": 570,
+        "sha256": "da9de76e72e6ce676af04b0bc75558545bc94c1d9fa249c8f9ee7a8915acec21"
+      }
+    },
+    {
+      "verifier_id": "amf.srg692075.exact.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.srg692075.exact.v1/manifest.json",
+        "bytes": 571,
+        "sha256": "8c975694e4daed25314eed2703d50af320e6b210a5a011fc689e0c528ce0a490"
+      }
+    },
+    {
+      "verifier_id": "amf.costas32.exact.v1",
+      "protocol": "AMF_VERIFIER_PROTOCOL_1",
+      "manifest": {
+        "path": "verifiers/amf.costas32.exact.v1/manifest.json",
+        "bytes": 568,
+        "sha256": "0a405951a8c5b7e0dee05ac5508aaebee14e470681a9e19a46c120e1e8369645"
+      }
     }
   ]
 }

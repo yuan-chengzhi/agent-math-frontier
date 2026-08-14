@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "costas-order-32",
+  "problem_card_sha256": "56976f7b021e7a0a5d395bb6cf4155cdf8dbbe6c83d73833a1824bb0202012b8",
+  "canonical_statement": "Produce a permutation pi of {1,...,32} such that all 496 oriented displacement vectors (j-i, pi(j)-pi(i)) for 0<=i<j<32 are pairwise distinct. An accepted permutation is a Costas array of order 32 and resolves the positive construction question, subject to a fresh novelty audit.",
+  "source_revision": "literature-audit-2026-08-14",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "amf.costas32.exact.v1 verifies exact permutation semantics and uniqueness of all pair displacements and accepts. Independent current-status and symmetry/duplicate review remains mandatory.",
+  "partial_progress_criterion": "Retain rigorously excluded construction subclasses, materially improved conflict-search methods, and near arrays only when a predeclared mathematical reuse case exists; raw low-conflict permutations alone are not a research result.",
+  "stop_conditions": [
+    "A current paper or database supplies an order-32 Costas array or proves nonexistence.",
+    "The run only reproduces historical heuristic failures without a new artifact.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/costas-order-32/candidate.schema.json", "bytes": 620, "sha256": "6b71790c75a165a6ea1cc30a949682742719afb6a95a969ee83412ccdcc2a253"},
+  "verifier_id": "amf.costas32.exact.v1"
+}

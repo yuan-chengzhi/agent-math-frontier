@@ -12,6 +12,14 @@
 
 不要直接编辑 `catalog/`。不要复制没有明确再分发许可的完整题面或数据。不要把记录改进、有限参数解决、子类排除、文献重发现写成完整问题已解决。
 
+## 进入 experimental portfolio
+
+先跑实验不要求伪造完整 active receipts，但至少必须同时提交：冻结且绑定原问题卡
+revision 的 `target-card.json`、严格候选 JSON Schema、可离线运行的版本化 verifier
+manifest，以及能覆盖边界/恶意输入的测试。`scripts/export_experimental.py` 会自动要求
+每一个 `proof_assistant` 或 `executable_spec` 问题都有这些工件，并检查 verifier 的
+`binds_verification_mode`。实验角色不等于 novelty 或 statement-fidelity 通过。
+
 ## 晋升 active
 
 不要单独把 `stage` 改成 `active`，也不要提交 placeholder reviewer、虚构的

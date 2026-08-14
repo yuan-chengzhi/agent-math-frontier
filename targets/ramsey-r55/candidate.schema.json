@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/ramsey-r55/candidate.schema.json",
+  "title": "A 43-vertex graph with neither a 5-clique nor a 5-coclique",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "n", "edges"],
+  "properties": {
+    "schema": {"const": "AMF_R55_GRAPH43_1"},
+    "n": {"const": 43},
+    "edges": {
+      "type": "array",
+      "maxItems": 903,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [{"type": "integer", "minimum": 0, "maximum": 42}, {"type": "integer", "minimum": 0, "maximum": 42}],
+        "items": false
+      }
+    }
+  }
+}
