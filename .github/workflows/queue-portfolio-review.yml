@@ -1,0 +1,41 @@
+name: Queue independent portfolio review
+
+on:
+  schedule:
+    - cron: "41 4 1,15 * *"
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  queue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open review work item
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          review_date=$(date -u +%F)
+          title="Portfolio review: $review_date"
+          count=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "\"$title\" in:title" --json number --jq length)
+          if [ "$count" -ne 0 ]; then
+            exit 0
+          fi
+          cat > /tmp/portfolio-review.md <<'EOF'
+          This is a scheduled independent-review work item, not evidence that a review has already happened.
+
+          Assign an agent/reviewer who did not generate the current shortlist. Start from primary sources rather than accepting existing scores or recommendations as premises.
+
+          Required questions:
+
+          - Has the portfolio become fixed around familiar tools, formalized statements, or graph construction?
+          - Which status, baseline, in-review work, or literature changed since the last audit?
+          - Would success on each shortlist item still be mathematically valuable and novel?
+          - Which failed attempts or resource costs trigger kill, continue, or redesign decisions?
+          - Which new candidates dominate an existing candidate within the same track?
+          - Are the current track mix and 20% exploration share being respected?
+
+          Deliver an append-only report in docs/, update evidence/conflicts, regenerate the catalog, and close this issue only after a second person checks the review's primary-source claims.
+          EOF
+          gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file /tmp/portfolio-review.md
