@@ -1,0 +1,22 @@
+{
+  "schema": "AMF_VERIFIER_MANIFEST_1",
+  "verifier_id": "amf.erdos64.counterexample.v1",
+  "binds_verification_mode": "exact_bounded_graph_counterexample_checker",
+  "version": "v1",
+  "command": [
+    "verifiers/amf.erdos64.counterexample.v1/checker.py",
+    "--candidate",
+    "{candidate_path}"
+  ],
+  "working_directory": ".",
+  "timeout_seconds": 150,
+  "maximum_output_bytes": 65536,
+  "network": false,
+  "source_artifacts": [
+    {
+      "path": "verifiers/amf.erdos64.counterexample.v1/checker.py",
+      "bytes": 11662,
+      "sha256": "9da53066619075a5209743307c23362f0d3b83f24477c62e8cf170d710f112bb"
+    }
+  ]
+}

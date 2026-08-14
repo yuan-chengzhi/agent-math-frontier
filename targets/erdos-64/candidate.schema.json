@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/erdos-64/candidate.schema.json",
+  "title": "Erdos 64 explicit bounded graph counterexample candidate",
+  "description": "A finite simple undirected graph. Acceptance is a disproof of the global conjecture; the representation cap does not turn an unsuccessful bounded search into a proof.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "kind", "n", "edges"],
+  "properties": {
+    "schema": {"const": "AMF_ERDOS64_GRAPH_COUNTEREXAMPLE_1"},
+    "kind": {"const": "graph_counterexample"},
+    "n": {"type": "integer", "minimum": 4, "maximum": 64},
+    "edges": {
+      "type": "array",
+      "maxItems": 2016,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [
+          {"type": "integer", "minimum": 0, "maximum": 63},
+          {"type": "integer", "minimum": 0, "maximum": 63}
+        ],
+        "items": false
+      }
+    }
+  }
+}

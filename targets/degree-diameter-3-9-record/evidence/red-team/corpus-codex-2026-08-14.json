@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_RED_TEAM_CORPUS_DRAFT_1",
+  "problem_id": "degree-diameter-3-9-record",
+  "reviewer_id": "codex-verifier-red-team-2026-08-14",
+  "cases": [
+    {"id": "dd-exhaustive-all-labelled-graphs-n-le-5", "class": "semantic-reference", "expected": "both cores match independent BFS metrics"},
+    {"id": "dd-diameter-nine-boundary", "class": "semantic-boundary", "expected": "P10 accepted only at the explicit small-order seam; P11 rejected"},
+    {"id": "dd-degree-not-regularity", "class": "statement-boundary", "expected": "maximum degree at most three is not silently strengthened to cubic"},
+    {"id": "dd-bool-vertex", "class": "json-type-confusion", "expected": "rejected"},
+    {"id": "dd-float-vertex", "class": "json-type-confusion", "expected": "rejected"},
+    {"id": "dd-duplicate-nested-key", "class": "json-parser", "expected": "rejected"},
+    {"id": "dd-reverse-edge", "class": "canonicalization", "expected": "rejected"},
+    {"id": "dd-resource-exit-two", "class": "apparatus-protocol", "expected": "dispatcher exit two / infrastructure failure"},
+    {"id": "dd-resource-exit-one-forgery", "class": "apparatus-protocol", "expected": "invalid checker output / infrastructure failure"},
+    {"id": "dd-implausible-accepted-facts", "class": "checker-output-forgery", "expected": "invalid checker output / infrastructure failure"},
+    {"id": "dd-checker-output-limit", "class": "resource-boundary", "expected": "infrastructure failure"},
+    {"id": "dd-checker-timeout", "class": "resource-boundary", "expected": "infrastructure failure"},
+    {"id": "dd-manifest-source-byte-drift", "class": "source-binding", "expected": "contract rejection"},
+    {"id": "dd-manifest-source-symlink", "class": "source-binding", "expected": "contract rejection"}
+  ]
+}

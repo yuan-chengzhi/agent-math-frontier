@@ -1,0 +1,32 @@
+{
+  "schema": "AMF_VERIFIER_MANIFEST_1",
+  "verifier_id": "amf.stretched-lr.exact.v1",
+  "binds_verification_mode": "exact_integer_polynomial_two_implementations",
+  "version": "v1",
+  "command": [
+    "verifiers/amf.stretched-lr.exact.v1/dispatch.py",
+    "--candidate",
+    "{candidate_path}"
+  ],
+  "working_directory": ".",
+  "timeout_seconds": 420,
+  "maximum_output_bytes": 65536,
+  "network": false,
+  "source_artifacts": [
+    {
+      "path": "verifiers/amf.stretched-lr.exact.v1/dispatch.py",
+      "bytes": 11732,
+      "sha256": "aeb3331e6d0875d5c4958e5cfc71cf44fbc128f35460861ea01107d73815acc8"
+    },
+    {
+      "path": "verifiers/amf.stretched-lr.exact.v1/primary.py",
+      "bytes": 18884,
+      "sha256": "c63babe63253c05906bdbe1202f7c4a3fdc88b967ae55b3392d2dddbbebc53de"
+    },
+    {
+      "path": "verifiers/amf.stretched-lr.exact.v1/secondary.py",
+      "bytes": 18839,
+      "sha256": "cc6c5e9e3ffc464e0153b6e82c746247266c305a6c1b0629fa01abb0bc4dcd7f"
+    }
+  ]
+}

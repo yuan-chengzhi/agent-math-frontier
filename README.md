@@ -5,7 +5,8 @@
 截至 **2026-08-14**，首版包含：
 
 - 17 张人工问题卡：6 题有固定 Lean theorem skeleton，8 题尚无完整形式化但有精确可执行终检，3 题仍需 CAS/领域专家审核；
-- 9 题进入“优先审核”，**0 题直接宣称可开跑**；
+- 9 题进入“优先审核”；其中 3 题在独立 statement/open-status 审查、
+  verifier 红队和冻结预算全部通过后晋升为 `active`；
 - 1,217 条 Erdős Problems 元数据，以及 Formal Conjectures 中 1,301 个 `research open` 声明的可再生快照；
 - 5 个隔离案例，用来保存状态冲突、变体歧义和刚发生的解决声明。
 
@@ -19,13 +20,18 @@
 - [独立评审记录](docs/independent-review-2026-08-14.md)：三条独立调研怎样改变首版。
 - [隔离项](catalog/quarantine.md)：为什么数据库标签或 Lean 文件不能单独作为依据。
 
-当前最适合做首轮基础设施试点的三条路线是：
+当前冻结给首轮多题研究实验的三条 active target 是：
 
-1. 三正则 girth-13 cage 上界：找少于 272 顶点的图；
-2. degree–diameter `(3,9)`：找超过 600 顶点的图；
-3. stretched Littlewood–Richardson 负系数反例。
+1. degree–diameter `(3,9)`：构造至少 601 顶点、最大度数至多 3、
+   直径至多 9 的图；
+2. Erdős #64：在至多 64 个顶点内寻找避开全部 2 的幂长度环的
+   最小度数至少 3 的反例图；
+3. stretched Littlewood–Richardson：在冻结的长度/大小界内寻找普通
+   单项式基系数为负的精确反例。
 
-它们覆盖两个记录优化任务和一个有界反例任务，候选证书都小、终检都确定。强正则图 `(69,20,7,5)`、Erdős #23/#307/#835 与 AIM #49/#60 同处优先审核层，但依赖不同的状态、语义或 verifier 准备工作。
+它们覆盖记录构造、开放图论反例和代数组合有界反例，并都具有严格的
+target-specific executable verifier。其余候选仍留在 curated/quarantine 层；
+尤其 AIM #60 因公开例子已超过原冻结阈值而未获 open-status gate。
 
 ## 这里怎样使用“形式化”
 
@@ -63,6 +69,45 @@ make sync
 
 `data/upstream/` 只镜像简化元数据和声明位置，不复制完整题面。人工判断编辑 `data/problems.json`、`data/sources.json`、`data/precedents.json` 与 `data/quarantine.json`；`catalog/` 由脚本生成。
 
+## 机器可执行的 active 边界
+
+`shortlist` 仍只是人工审核优先级。唯一可供实验 host 导入的攻击面是
+[`data/active-portfolio.json`](data/active-portfolio.json)，它由
+`scripts/export_active.py` 从完整问题账本和内容寻址 target bundle
+确定性导出。当前导出精确包含上述 3 个 active target。
+
+一个问题只有在以下条件全部满足时才能进入该文件：五个 hard gate
+均为 `pass`；`targets/<problem-id>/target-bundle.json` 存在；target card、
+基线、两份独立审核、evaluator 红队和预算收据均存在、通过严格版本化
+schema，并以 SHA-256 绑定到同一 problem/target/verifier。任何缺失、额外
+字段、条件性审核、未注册 verifier 或哈希漂移都会令导出失败。
+
+`problem.verification.mode` 是语义能力名（“需要验证什么”），不是程序名。
+target card 选择带 `.vN` 后缀的版本化 `verifier_id`（“用哪个不可变实现”）；
+注册表所绑定的 manifest 必须用 `binds_verification_mode` 明确声明并匹配该
+语义能力。这样可以替换或并行红队多个 checker 实现，而不改写问题定义。
+
+每份 review receipt 必须逐字节绑定完整 review report、problem/target 的
+`source_revision`、reviewer authority 记录和 session evidence，并固定声明
+其范围仅为身份与流程绑定。它**不证明** reviewer 身份真实、数学判断正确，
+也不是密码学签名；这些仍需 host 在接纳时通过外部身份系统和独立复核确认。
+
+```bash
+# 只检查已提交导出是否精确、最新
+python scripts/export_active.py --check
+
+# 更新 canonical export；不会自动晋升任何问题
+python scripts/export_active.py --output data/active-portfolio.json
+
+# 重新核验冻结审查、红队、预算和全部 content bindings
+python scripts/prepare_activation.py --check
+```
+
+JSON 逻辑身份使用 `scripts/contracts.py` 的 canonical encoding；文件工件
+收据绑定原始字节、长度和 SHA-256。JSON 输入与绑定工件均有显式大小上限，
+且只接受 repository 内的普通非符号链接文件。版本化 JSON Schema 位于
+`schemas/`。
+
 GitHub Actions 会每周检查上游整库漂移，并在每月 1 日、15 日排入一张独立 portfolio-review 工单。工单只是要求一个与 solver 分离的 agent/reviewer 开始审计，不会把定时任务冒充已完成评审。
 
 ## 仓库层级
@@ -70,6 +115,10 @@ GitHub Actions 会每周检查上游整库漂移，并在每月 1 日、15 日�
 ```text
 data/upstream/     可再生 raw 索引，不等于开放或适合
 data/problems.json 人工精选问题卡，是判断的唯一数据源
+data/verifiers.json 可执行 verifier 注册表；空注册表是合法状态
+data/active-portfolio.json 唯一 fail-closed active 导出
+targets/           仅存已冻结、内容寻址的 active target bundle
+schemas/           problem/target/receipt 的严格版本化 schema
 catalog/           面向阅读的自动生成视图
 docs/              独立审计与决策记录
 scripts/           同步、校验与渲染

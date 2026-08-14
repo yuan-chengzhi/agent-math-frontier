@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/schemas/activation-plan.schema.json",
+  "title": "AMF offline activation plan version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "activation_id", "checked_at", "execution_policy", "budget", "targets"],
+  "properties": {
+    "schema": {"const": "AMF_ACTIVATION_PLAN_1"},
+    "activation_id": {"const": "pmw-frontier-choice-2026-08-14"},
+    "checked_at": {"const": "2026-08-14"},
+    "execution_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["network", "model_calls", "test_timeout_seconds"],
+      "properties": {
+        "network": {"const": false},
+        "model_calls": {"const": 0},
+        "test_timeout_seconds": {"const": 1200}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["limits", "maximum_artifact_bytes", "retain_failures", "stop_conditions"],
+      "properties": {
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["context_tokens", "input_tokens", "model_calls", "output_tokens", "tool_calls", "verifier_calls", "wall_ms"],
+          "properties": {
+            "context_tokens": {"const": 1050000},
+            "input_tokens": {"const": 922000},
+            "model_calls": {"const": 2},
+            "output_tokens": {"const": 128000},
+            "tool_calls": {"const": 512},
+            "verifier_calls": {"const": 8},
+            "wall_ms": {"const": 15600000}
+          }
+        },
+        "maximum_artifact_bytes": {"const": 67108864},
+        "retain_failures": {"const": true},
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            {"const": "Each life uses exactly one persistent Pi RPC session with at most two charged provider turns: S0 then S1."},
+            {"const": "S0 stops after 1,200,000 wall-clock milliseconds or 24 tool calls, whichever occurs first."},
+            {"const": "S1 stops after 14,400,000 wall-clock milliseconds; the complete life stops after 15,600,000 wall-clock milliseconds or 512 cumulative tool calls, whichever occurs first."},
+            {"const": "The life stops before provider input exceeds 922,000 tokens or context occupancy reaches the separately frozen hard-stop threshold; the configured context window is 1,050,000 tokens."},
+            {"const": "Each provider turn may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times."},
+            {"const": "No automatic retry, replacement life, context compaction, or host-authored summary is permitted."},
+            {"const": "A verifier timeout, resource ceiling, implementation disagreement, or other apparatus failure is inconclusive and is not mathematical rejection."},
+            {"const": "No receipt or target bundle grants model-launch or provider-billing authority."}
+          ]
+        }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/target"}
+    }
+  },
+  "$defs": {
+    "path": {"type": "string", "pattern": "^[^/][^\\\\]*$", "minLength": 1, "maxLength": 512},
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["axis", "reviewer_id", "reviewer_task_path", "review_id", "verdict", "report", "reviewer_authority", "review_session_evidence"],
+      "properties": {
+        "axis": {"enum": ["STATEMENT_FIDELITY", "OPEN_STATUS_AND_NOVELTY"]},
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "reviewer_task_path": {"type": "string", "pattern": "^/root/[a-z0-9][a-z0-9_-]{0,127}$"},
+        "review_id": {"type": "string", "minLength": 1},
+        "verdict": {"const": "PASS"},
+        "report": {"$ref": "#/$defs/path"},
+        "reviewer_authority": {"$ref": "#/$defs/path"},
+        "review_session_evidence": {"$ref": "#/$defs/path"}
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["problem_id", "baseline", "reviews", "red_team", "test_modules"],
+      "properties": {
+        "problem_id": {"enum": ["degree-diameter-3-9-record", "erdos-64", "frontier-stretched-lr"]},
+        "baseline": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["baseline_id", "description", "artifacts"],
+          "properties": {
+            "baseline_id": {"type": "string", "minLength": 1},
+            "description": {"type": "string", "minLength": 1},
+            "artifacts": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/path"}}
+          }
+        },
+        "reviews": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["statement", "open_status"],
+          "properties": {
+            "statement": {"$ref": "#/$defs/review"},
+            "open_status": {"$ref": "#/$defs/review"}
+          }
+        },
+        "red_team": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reviewer_id", "corpus", "report"],
+          "properties": {
+            "reviewer_id": {"const": "codex-verifier-red-team-2026-08-14"},
+            "corpus": {"$ref": "#/$defs/path"},
+            "report": {"$ref": "#/$defs/path"}
+          }
+        },
+        "test_modules": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^tests\\.test_[a-z0-9_]+$"}
+        }
+      }
+    }
+  }
+}

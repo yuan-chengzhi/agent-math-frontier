@@ -1,0 +1,23 @@
+{
+  "schema": "AMF_STRETCHED_LR_BASELINE_SOURCES_1",
+  "checked_at": "2026-08-14",
+  "canonical_prompt": {
+    "url": "https://epoch.ai/frontiermath/open-problems/stretched-lr-coefficients",
+    "status_used": "unsolved",
+    "bounds": "all three partition lengths at most 7 and sizes at most 30"
+  },
+  "background_pdf": {
+    "url": "https://epoch.ai/files/open-problems/stretched-lr-coefficients.pdf",
+    "retrieved_sha256": "135f583c5d6edacf1251624f5f0aaad1b85190bab5a7703173b1ba84e36d8052",
+    "degree_bound_used": "deg P <= binomial(length(lambda)+1,2) <= 28"
+  },
+  "known_positive_subrange": {
+    "source": "https://arxiv.org/abs/2607.22301v1",
+    "claim": "Coefficientwise nonnegativity is proved when all three partitions have length at most 4; this subrange is excluded from novelty claims and should not be blindly searched.",
+    "route_floor": "at least one of lambda, mu, nu must have length at least 5 for a novel counterexample search"
+  },
+  "local_regression_artifact": {
+    "path": "targets/frontier-stretched-lr/evidence/regression/cases.json",
+    "role": "small exact checker regressions only, not a negative-coefficient candidate"
+  }
+}

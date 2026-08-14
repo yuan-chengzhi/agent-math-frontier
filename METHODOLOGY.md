@@ -16,7 +16,7 @@ raw catalog  ──状态/语义/许可审计──>  curated candidates  ──
 
 - `raw catalog`：可批量采集题库元数据，允许状态陈旧和重复。
 - `curated candidates`：有规范来源、可执行目标、验证路线、风险和部分进展定义。
-- `active attacks`：两名独立 reviewer 完成状态/题意审核，evaluator 已红队，预算与工件已冻结。
+- `active attacks`：两名独立 reviewer 完成状态/题意审核，完整报告与 reviewer/session 过程证据已内容绑定，evaluator 已红队，预算与工件已冻结。
 
 结果不会直接覆盖题目状态；状态变化以追加事件记录。
 
@@ -76,6 +76,8 @@ raw catalog  ──状态/语义/许可审计──>  curated candidates  ──
 审核顺序是：机器终检 → 边界与 evaluator 对抗审计 → 题意忠实度 → 新颖性检索 → 数学意义 → 可复现性。形式证明禁止残留 `sorry`、隐含未声明公理或把核心难点挪入未证 lemma；数值结果禁止只给浮点。
 
 未形式化的“完整解决”原则上需要两名领域专家。形式化结果仍需要专家确认 statement fidelity。公开结果先标 `candidate_result`，经过冷却期和上游同步才可升级为 `verified_novel_result`。
+
+Review receipt 的哈希绑定只回答“哪份报告、哪次声明的 reviewer/session、针对哪个 source revision 被纳入流程”，不能自行回答 reviewer 是否真实、结论是否正确，也不是密码学签名。Host 必须在平台身份层验证 authority/session，并让数学正确性继续接受独立复核。
 
 ## 7. 防止选择固化
 

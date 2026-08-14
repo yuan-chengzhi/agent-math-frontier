@@ -11,3 +11,27 @@
 5. PR 中附两份相互独立的审核：一份重建原意，一份主动寻找“它其实已解决/题目不同”的证据。
 
 不要直接编辑 `catalog/`。不要复制没有明确再分发许可的完整题面或数据。不要把记录改进、有限参数解决、子类排除、文献重发现写成完整问题已解决。
+
+## 晋升 active
+
+不要单独把 `stage` 改成 `active`，也不要提交 placeholder reviewer、虚构的
+红队结论或只写名字而不能运行的 verifier。晋升 PR 必须同时提供：
+
+1. `targets/<problem-id>/target-card.json` 与 candidate JSON Schema；
+2. 冻结基线及其 receipt；
+3. 两名不同 reviewer 的 `STATEMENT_FIDELITY` 和
+   `OPEN_STATUS_AND_NOVELTY` pass receipts；每份 receipt 必须绑定完整报告、
+   source revision、reviewer authority 记录和 session evidence；
+4. 已注册、离线、源码内容寻址的 verifier manifest；问题卡中的
+   `verification.mode` 是语义能力名，target 的 `verifier_id` 必须是带 `.vN`
+   后缀的版本化实现 ID，manifest 的 `binds_verification_mode` 必须匹配前者；
+5. 由第三名 reviewer 产生的 evaluator red-team corpus、报告和 pass receipt；
+6. 带资源上限、停止条件和失败保留规则的 budget receipt；
+7. 把以上文件逐字节绑定起来的 `target-bundle.json`。
+
+所有 JSON 必须符合 `schemas/` 中的 V1 exact schema；`scripts/contracts.py`
+还会检查跨文件身份、SHA-256、路径逃逸、reviewer 分离、source revision、
+特殊文件和输入大小。Review receipt 只形成可审计的身份/流程与字节绑定，
+不构成数学真实性证明、身份认证或密码学签名；晋升者仍须独立核验这些事实。
+运行 `make active && make check` 生成并验证唯一的 PMW 输入
+`data/active-portfolio.json`。该导出是生成物，不能用手工编辑绕过检查。

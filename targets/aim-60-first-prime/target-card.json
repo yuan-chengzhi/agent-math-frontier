@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "aim-60-first-prime",
+  "problem_card_sha256": "048196286e6b94ddfeb736abea4dcda5898a8394a151a1299c2e4a7b584c436c",
+  "canonical_statement": "Produce a positive integer a with 1 <= a < 10^20 and an integer x0 with 616981 <= x0 <= 10000000 such that x^12+a is composite for every positive integer x with 1 <= x < x0, while x0^12+a is prime. This establishes only one finite certified instance strictly beating the frozen public example a=488669, x0=616980; it does not establish current-record status or global optimality over a < 10^20.",
+  "source_revision": "aim-aint26-2026-05",
+  "claim_scope": "FINITE_INSTANCE",
+  "success_criterion": "The content-pinned amf.aim60.certificate.v1 checker accepts the strict JSON certificate after independently enumerating every positive predecessor from x=1, validating every congruence cover rule and remaining non-trivial factor, and verifying an Atkin--Morain ECPP proof of primality for x0^12+a. Separate statement-fidelity and open-status/novelty review remains mandatory before activation or any public record claim.",
+  "partial_progress_criterion": "Reproducible candidates with a later but still sub-threshold first prime, exact modular covers, independently certified factors, stronger search reductions, or reusable certificate-generation improvements are retained as progress but do not satisfy this frozen threshold target.",
+  "stop_conditions": [
+    "Independent statement-fidelity review rejects the positive-a interpretation or the finite 10000000 resource cap as unsuitable for the intended first launch.",
+    "The frozen public example or its exact certificate cannot be independently reconstructed, or verifier integrity cannot be established.",
+    "The separately approved experiment resource budget is exhausted."
+  ],
+  "candidate_schema": {
+    "path": "targets/aim-60-first-prime/candidate.schema.json",
+    "bytes": 2727,
+    "sha256": "008b98306ce0033b2696816ac8331a7bb494decab5e0f0ddb4d956e2ec2a5052"
+  },
+  "verifier_id": "amf.aim60.certificate.v1"
+}

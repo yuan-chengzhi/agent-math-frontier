@@ -1,0 +1,32 @@
+{
+  "schema": "AMF_VERIFIER_MANIFEST_1",
+  "verifier_id": "amf.dd39.exact.v1",
+  "binds_verification_mode": "exact_degree_connectivity_and_bfs_diameter_checker",
+  "version": "v1",
+  "command": [
+    "verifiers/amf.dd39.exact.v1/dispatch.py",
+    "--candidate",
+    "{candidate_path}"
+  ],
+  "working_directory": ".",
+  "timeout_seconds": 90,
+  "maximum_output_bytes": 65536,
+  "network": false,
+  "source_artifacts": [
+    {
+      "path": "verifiers/amf.dd39.exact.v1/dispatch.py",
+      "bytes": 10694,
+      "sha256": "070e1efa38374b656acbca3b78b3a676117fa57ce9c3a2c47c0d6a360cb02c71"
+    },
+    {
+      "path": "verifiers/amf.dd39.exact.v1/primary.py",
+      "bytes": 8782,
+      "sha256": "a6cfc932466f70885f1fd0c28f00c5001f61c2c7985d9bfb68a52d8e457213ad"
+    },
+    {
+      "path": "verifiers/amf.dd39.exact.v1/secondary.py",
+      "bytes": 8817,
+      "sha256": "0f3c4df662d4245509a31ced9aef271561a091ba54685f53aefe2c4647528bfd"
+    }
+  ]
+}

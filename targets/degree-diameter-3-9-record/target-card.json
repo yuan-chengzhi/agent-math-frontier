@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "degree-diameter-3-9-record",
+  "problem_card_sha256": "ff24ae26ddc2206625a765c5a67ff9bc7c360c42f0067ac4c2cff5aa4444eb73",
+  "canonical_statement": "Produce a finite simple undirected connected graph G with at least 601 vertices, maximum vertex degree at most 3, and all-pairs shortest-path diameter at most 9. The candidate representation is resource-bounded to at most 1534 vertices by the Moore bound. The condition is maximum degree at most 3; cubic regularity is not required.",
+  "source_revision": "degree-diameter-table-2026-08-13",
+  "claim_scope": "RECORD_IMPROVEMENT",
+  "success_criterion": "The content-pinned amf.dd39.exact.v1 dispatcher accepts the strict JSON edge-list candidate after its independent queue-BFS and bit-set-wavefront implementations agree on simplicity, connectivity, maximum degree at most 3, and diameter at most 9, with n at least 601; a separate open-status review must still confirm novelty at promotion and submission time.",
+  "partial_progress_criterion": "Reproducible improvements within a frozen construction family, independently checked candidates approaching 601 vertices, or rigorously justified pruning/optimization results are retained as research progress but do not satisfy this record-improvement target.",
+  "stop_conditions": [
+    "The maintained (3,9) record or canonical problem status changes and the frozen 601 threshold is no longer the intended target.",
+    "The two independent checker implementations disagree or verifier integrity cannot be established.",
+    "The separately approved experiment resource budget is exhausted."
+  ],
+  "candidate_schema": {
+    "path": "targets/degree-diameter-3-9-record/candidate.schema.json",
+    "bytes": 1024,
+    "sha256": "847496fc5224defba396b9bd281d31643fc9e32a7d6b6571d3864696dc53f70c"
+  },
+  "verifier_id": "amf.dd39.exact.v1"
+}

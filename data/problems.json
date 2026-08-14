@@ -138,20 +138,20 @@
       "title_en": "Erdős #64: power-of-two cycle lengths in finite graphs",
       "domains": ["graph theory", "cycles"],
       "track": "counterexample_search_plus_proof",
-      "stage": "curated",
+      "stage": "active",
       "recommendation": "incubate",
       "source": {
         "collection_id": "erdos-problems",
         "canonical_url": "https://www.erdosproblems.com/64",
         "source_label": "falsifiable",
         "checked_at": "2026-08-14",
-        "status_confidence": "medium"
+        "status_confidence": "high"
       },
       "statement": {
         "summary_zh": "每个最小度至少 3 的有限图，是否都包含长度 2^k（k≥2）的圈？",
-        "target_zh": "优先寻找有限反例；正面方向则拆出可在 Lean 中复用的结构引理。",
-        "success_artifact_zh": "反例邻接表及精确圈枚举证书，或无 sorry 的完整 Lean 证明。",
-        "partial_progress_zh": "对新图族的证明、反例最小规模下界或可复用图论引理。"
+        "target_zh": "可自由推进自然语言结构理论、计算搜索或 Lean；当前机器终检只接纳 4 至 64 个顶点的显式有限简单图反例。",
+        "success_artifact_zh": "严格边表给出的有限反例，并由资源有界的精确 checker 完整确认最小度至少 3 且不存在长度 2^k（k≥2）的简单圈。自然语言或 Lean 根证明须待独立安全 checker 后另行闭合。",
+        "partial_progress_zh": "对新图族的证明、超过全图至 31 点或三正则二分图至 58 点等已知有限基线的可复现结果、最小反例结构约束、反例规模下界或可复用 Lean 图论引理；这些均不自动等于根闭合。"
       },
       "formalization": {
         "level": "proof_assistant",
@@ -160,12 +160,12 @@
         "artifact_url": "https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/64.lean",
         "revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
         "declaration": "erdos_64",
-        "fidelity": "unreviewed"
+        "fidelity": "reviewed_pass_2026-08-14"
       },
       "verification": {
-        "mode": "exact_graph_counterexample_or_lean_proof",
+        "mode": "exact_bounded_graph_counterexample_checker",
         "independent": true,
-        "notes_zh": "反例验证便宜，但没有反例阶数上界，有限可验不等于有限可判定。"
+        "notes_zh": "当前 verifier 只对显式 4 至 64 顶点反例作无假阳性的精确终检；搜索步数超限会返回非权威 apparatus error，而不是把候选判假。不存在反例阶数上界，有限搜索、子类定理和未配安全 checker 的 Lean 文件均不构成根闭合。"
       },
       "hard_gates": {
         "open_status": "pass",
@@ -187,7 +187,8 @@
       },
       "risks_zh": [
         "无规模上界，盲目枚举很可能没有信息。",
-        "需要图生成、同构消除和理论引理共同驱动。"
+        "需要图生成、同构消除和理论引理共同驱动。",
+        "2026 年路线变化快：三正则二分图至 58 点已被排除，重复该范围不构成新进展。"
       ],
       "selection_note_zh": "高价值但不宜作为短期成功率任务；先要求理论化搜索策略。"
     },
@@ -374,7 +375,7 @@
       "title_en": "A negative coefficient in a stretched Littlewood–Richardson polynomial",
       "domains": ["algebraic combinatorics", "representation theory"],
       "track": "bounded_exact_counterexample_search",
-      "stage": "curated",
+      "stage": "active",
       "recommendation": "shortlist",
       "source": {
         "collection_id": "frontiermath-open",
@@ -385,9 +386,9 @@
       },
       "statement": {
         "summary_zh": "在长度至多 7、总大小至多 30 的分拆范围内，寻找 stretched LR 多项式含负系数的三元组。",
-        "target_zh": "输出分拆 λ、μ、ν 以及可独立重算的完整系数多项式。",
+        "target_zh": "输出分拆 λ、μ、ν 以及可独立重算的完整系数多项式；已知所有分拆长度至多 4 的范围为非负，搜索应从最大长度至少 5 开始。",
         "success_artifact_zh": "有限分拆三元组、精确 LR 系数计算和第二套独立实现的复核。",
-        "partial_progress_zh": "证明更小参数区间不存在反例，或给出能排除大类候选的结构引理。"
+        "partial_progress_zh": "在不重复已知长度至多 4 定理的前提下，证明新的有限参数区间不存在反例，或给出能排除大类候选的结构引理。"
       },
       "formalization": {
         "level": "executable_spec",
@@ -401,14 +402,14 @@
       "verification": {
         "mode": "exact_integer_polynomial_two_implementations",
         "independent": true,
-        "notes_zh": "官方定制 verifier 未完全公开；启动前应以 Sage 与独立算法交叉验证。"
+        "notes_zh": "仓库内两条精确算法已由第三个小规模实现交叉核对并完成 verifier 红队；资源超限始终是非结论性的 apparatus failure。"
       },
       "hard_gates": {
         "open_status": "pass",
         "exact_target": "pass",
         "verification_path": "pass",
         "valuable_partial_progress": "pass",
-        "reproducibility": "conditional"
+        "reproducibility": "pass"
       },
       "fit": {
         "verifiability": 3,
@@ -423,7 +424,8 @@
       },
       "risks_zh": [
         "实现错误可能制造伪负系数，必须双实现。",
-        "有限边界来自当前题面，不能悄悄放宽后仍声称解决该任务。"
+        "有限边界来自当前题面，不能悄悄放宽后仍声称解决该任务。",
+        "arXiv:2607.22301 已证明三分拆长度均至多 4 时系数非负；在该范围继续盲搜只会重复已知结果。"
       ],
       "selection_note_zh": "首版最强的未形式化候选：有限、精确、价值较高且证书紧凑。"
     },
@@ -729,7 +731,7 @@
       "domains": ["number theory", "computational search"],
       "track": "record_optimization_with_exact_certificate",
       "stage": "curated",
-      "recommendation": "shortlist",
+      "recommendation": "quarantine",
       "source": {
         "collection_id": "aim-aint26",
         "canonical_url": "https://aimath.org/pastworkshops/aint26problemlist.pdf",
@@ -739,9 +741,9 @@
       },
       "statement": {
         "summary_zh": "在 a<10^20 中，使最小的正整数 x（令 x^12+a 为素数）尽可能大。",
-        "target_zh": "把“刷新公开记录”和“证明全局最优”分开；首轮只接受前者，并冻结当前纪录。",
+        "target_zh": "当前 616980 门槛已被公开实例超过；本包仅保留为 verifier 回归/复现实例，重新激活前必须先独立认证并重设最新公开基线。",
         "success_artifact_zh": "a、此前所有值合数的因子证书、首个素值的素性证书和完整搜索代码。",
-        "partial_progress_zh": "任何严格刷新纪录的 a、覆盖同余构造或更快的认证流水线。"
+        "partial_progress_zh": "独立认证已公开的更强实例、厘清最新公开基线、覆盖同余构造或更快的认证流水线。"
       },
       "formalization": {
         "level": "executable_spec",
@@ -758,7 +760,7 @@
         "notes_zh": "记录候选可严格检查；证明 a<10^20 中全局最优是完全不同且可能不可承受的任务。"
       },
       "hard_gates": {
-        "open_status": "pass",
+        "open_status": "fail",
         "exact_target": "pass",
         "verification_path": "pass",
         "valuable_partial_progress": "pass",
@@ -776,7 +778,7 @@
         "resource_feasibility": 1
       },
       "risks_zh": [
-        "当前纪录可能在启动前改变，必须重新查询。",
+        "616980 不是 a<10^20 范围的当前公开基线；已有公开实例报告到 x0=1455090。",
         "筛选吞吐量不能代替每个合数和最终素数的独立证书。"
       ],
       "selection_note_zh": "很符合 generate-score-verify 循环；适合先做可复现的纪录改进。"
@@ -846,7 +848,7 @@
       "title_en": "Improve the degree-diameter (3,9) graph record",
       "domains": ["graph theory", "network design"],
       "track": "record_graph_construction",
-      "stage": "curated",
+      "stage": "active",
       "recommendation": "shortlist",
       "source": {
         "collection_id": "degree-diameter-table",
@@ -857,7 +859,7 @@
       },
       "statement": {
         "summary_zh": "寻找超过 600 个顶点、最大度至多 3 且直径至多 9 的连通简单图。",
-        "target_zh": "输出至少 601 顶点的邻接表，并在启动时冻结 600 顶点基线及维护者表版本。",
+        "target_zh": "输出至少 601 顶点的邻接表，并在启动时冻结维护者表的 600 顶点基线、来源版本与哈希；由于文件级再分发许可不明确，仓库不内置该第三方邻接表。",
         "success_artifact_zh": "邻接表、最大度与全对最短路检查、规范哈希和独立 Sage/自写 checker 复核。",
         "partial_progress_zh": "任何严格刷新记录的图，或对固定代数构造族的更优参数。"
       },
@@ -895,7 +897,8 @@
       },
       "risks_zh": [
         "表在 2026 年仍频繁更新，攻击开始与提交前都要重新同步。",
-        "需要区分最大度至多 3 与三正则变体，不能偷换条件。"
+        "需要区分最大度至多 3 与三正则变体，不能偷换条件。",
+        "Exoo_600 的外层数据集为 CC BY 4.0，但文件级第三方权利不明确；只能保存来源、哈希和自有测量，未经许可不再分发原图。"
       ],
       "selection_note_zh": "老的 (3,9) 格比刚更新的高阶格更适合差异化试点，且验证基础设施简单。"
     },

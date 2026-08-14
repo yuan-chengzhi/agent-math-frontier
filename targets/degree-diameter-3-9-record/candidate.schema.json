@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/degree-diameter-3-9-record/candidate.schema.json",
+  "title": "Degree-diameter (3,9) record candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "n", "edges"],
+  "properties": {
+    "schema": {"const": "AMF_DD39_CANDIDATE_1"},
+    "n": {"type": "integer", "minimum": 601, "maximum": 1534},
+    "edges": {
+      "type": "array",
+      "maxItems": 2301,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [
+          {"type": "integer", "minimum": 0, "maximum": 1533},
+          {"type": "integer", "minimum": 0, "maximum": 1533}
+        ],
+        "items": false
+      }
+    }
+  },
+  "$comment": "The exact verifier additionally enforces endpoints < n, u < v, no loops or duplicate undirected edges, connectivity, maximum degree <= 3, and all-pairs diameter <= 9."
+}

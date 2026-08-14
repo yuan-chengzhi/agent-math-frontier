@@ -1,0 +1,35 @@
+{
+  "schema": "AMF_AGENT_BASELINE_BRIEF_1",
+  "problem_id": "frontier-stretched-lr",
+  "as_of": "2026-08-14",
+  "status_statement": "The exact Epoch bounded counterexample task and the general monomial-coefficient nonnegativity conjecture remain open, but the all-partition-lengths-at-most-4 range is now known positive.",
+  "baseline_facts": [
+    "The convention is P(t)=c^(t*lambda)_(t*mu,t*nu), with lambda outer; all three partitions are nonempty, length at most 7 and size at most 30.",
+    "The frozen degree bound is deg P <= binomial(length(lambda)+1,2) <= 28, so exact values at t=1,...,29 determine the complete rational monomial-basis polynomial.",
+    "The local t+1, constant-one and constant-zero cases are checker regressions, not negative-coefficient candidates."
+  ],
+  "known_route_baselines": [
+    {
+      "id": "ferudun-length-at-most-four-v1",
+      "scope": "all three partitions have length at most 4",
+      "result": "Every monomial coefficient of the stretched Littlewood--Richardson polynomial is nonnegative.",
+      "source": "https://arxiv.org/abs/2607.22301v1",
+      "research_consequence": "A novel counterexample search must have maximum partition length at least 5; an exclusion wholly inside length 4 merely reproduces a known theorem."
+    },
+    {
+      "id": "ferudun-five-part-full-dimensional-partial-v1",
+      "scope": "full-dimensional five-part hives",
+      "result": "All coefficients except possibly the linear coefficient are proved positive.",
+      "source": "https://arxiv.org/abs/2607.22301v1",
+      "research_consequence": "The linear coefficient and lower-dimensional five-part cases are sharper unresolved places to inspect than an undirected all-coefficient sweep."
+    }
+  ],
+  "verification_caveats": [
+    "Negativity must be in the ordinary monomial t basis, not a Newton, binomial, h-star or sample-value basis.",
+    "Both independent exact implementations must reproduce all 29 values and the complete reduced rational polynomial; any resource ceiling is inconclusive."
+  ],
+  "provenance_caveats": [
+    "The 2026 preprint is a public primary-source novelty baseline, not a peer-reviewed final authority.",
+    "The length and size caps belong to the Epoch task; a witness outside them could affect the global conjecture but would not solve this frozen target."
+  ]
+}

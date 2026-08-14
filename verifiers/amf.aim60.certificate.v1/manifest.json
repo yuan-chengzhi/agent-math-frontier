@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_VERIFIER_MANIFEST_1",
+  "verifier_id": "amf.aim60.certificate.v1",
+  "binds_verification_mode": "integer_factor_and_primality_certificates",
+  "version": "v1",
+  "command": [
+    "verifiers/amf.aim60.certificate.v1/check.py",
+    "{candidate_path}"
+  ],
+  "working_directory": ".",
+  "timeout_seconds": 180,
+  "maximum_output_bytes": 65536,
+  "network": false,
+  "source_artifacts": [
+    {
+      "path": "verifiers/amf.aim60.certificate.v1/check.py",
+      "bytes": 18957,
+      "sha256": "0ecf882c2a328f9100001fbabdf2a5df1ee6279fe831db42eca31851d7416452"
+    }
+  ]
+}

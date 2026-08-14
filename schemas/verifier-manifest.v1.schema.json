@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/schemas/verifier-manifest.v1.schema.json",
+  "title": "AMF offline verifier manifest version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "verifier_id", "binds_verification_mode", "version", "command", "working_directory", "timeout_seconds", "maximum_output_bytes", "network", "source_artifacts"],
+  "properties": {
+    "schema": {"const": "AMF_VERIFIER_MANIFEST_1"},
+    "verifier_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,110}\\.v[1-9][0-9]{0,15}$", "description": "Immutable implementation ID whose .vN suffix matches version."},
+    "binds_verification_mode": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$", "description": "Semantic problem.verification.mode implemented by this verifier."},
+    "version": {"type": "string", "pattern": "^v[1-9][0-9]{0,15}$"},
+    "command": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "working_directory": {"type": "string", "minLength": 1},
+    "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 86400},
+    "maximum_output_bytes": {"type": "integer", "minimum": 1, "maximum": 1073741824},
+    "network": {"const": false},
+    "source_artifacts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fileBinding"}}
+  },
+  "$defs": {
+    "fileBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 1073741824},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

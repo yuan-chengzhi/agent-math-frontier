@@ -1,0 +1,45 @@
+{
+  "schema": "AMF_ERDOS64_BASELINE_SOURCES_1",
+  "checked_at": "2026-08-14",
+  "canonical_problem": {
+    "url": "https://www.erdosproblems.com/64",
+    "status_used": "open/falsifiable",
+    "status_caveat": "The target still requires an independent open-status and novelty review before activation."
+  },
+  "formal_statement": {
+    "repository": "https://github.com/google-deepmind/formal-conjectures",
+    "revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+    "path": "FormalConjectures/ErdosProblems/64.lean",
+    "declaration": "Erdos64.erdos_64",
+    "local_snapshot": "targets/erdos-64/evidence/sources/FormalConjectures-Erdos64-b33d8678.lean",
+    "local_snapshot_bytes": 1177,
+    "local_snapshot_sha256": "36b7a400cd21197e602deb279c771cbf7b6e13ce3d070c6276848b23d00b981a"
+  },
+  "known_route_baselines": [
+    {
+      "id": "p13-free-v2",
+      "source": "https://arxiv.org/abs/2410.22842v2",
+      "claim": "The conjecture is proved for P_13-free graphs, with computer assistance. This is a subclass result, not the global theorem."
+    },
+    {
+      "id": "minimal-counterexample-structure-v1",
+      "source": "https://arxiv.org/abs/2605.22844v1",
+      "claim": "In a minimum-order-and-size counterexample, every vertex is adjacent to a degree-3 vertex, degree-at-least-4 vertices are independent, and at least 4/7 of all vertices have degree exactly 3."
+    },
+    {
+      "id": "finite-sat-through-31",
+      "source": "https://github.com/ArjunBalaji79/erdos-gyarfas-min-degree-3/tree/c8c11e234d49baa263236a924789d3087e70b5c7",
+      "claim": "The pinned repository reports SAT/SMS exclusion of counterexamples through 31 vertices. Treat this as a route baseline pending independent review, not as a receipt or global closure."
+    },
+    {
+      "id": "cubic-bipartite-through-58-v1",
+      "source": "https://arxiv.org/abs/2608.02675v1",
+      "claim": "Certified exhaustive computation excludes cubic bipartite counterexamples through 58 vertices. This is a strict route baseline for that subclass, not an unrestricted finite exclusion or global closure."
+    },
+    {
+      "id": "p13-free-code",
+      "source": "https://github.com/rbsandeep/Erdos-Gyarfas/tree/27d9cb22705905fac32314c5e95addf6e11ce283",
+      "claim": "Pinned implementation associated with the P_13-free route; presence here is provenance only, not independent verification."
+    }
+  ]
+}
