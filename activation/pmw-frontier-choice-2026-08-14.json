@@ -1,5 +1,5 @@
 {
-  "schema": "AMF_ACTIVATION_PLAN_1",
+  "schema": "AMF_ACTIVATION_PLAN_2",
   "activation_id": "pmw-frontier-choice-2026-08-14",
   "checked_at": "2026-08-14",
   "execution_policy": {
@@ -10,9 +10,11 @@
   "budget": {
     "limits": {
       "context_tokens": 1050000,
-      "input_tokens": 922000,
-      "model_calls": 2,
-      "output_tokens": 128000,
+      "host_context_steers": 2,
+      "host_phase_prompts": 2,
+      "input_tokens_per_provider_request": 922000,
+      "output_tokens_per_provider_request": 128000,
+      "provider_request_attempts": 516,
       "tool_calls": 512,
       "verifier_calls": 8,
       "wall_ms": 15600000
@@ -20,11 +22,13 @@
     "maximum_artifact_bytes": 67108864,
     "retain_failures": true,
     "stop_conditions": [
-      "Each life uses exactly one persistent Pi RPC session with at most two charged provider turns: S0 then S1.",
+      "Each life uses exactly one persistent Pi RPC session with at most two host-issued phase prompts: S0 then S1; these prompts are not a count of provider requests.",
+      "Actual provider-request attempts include tool-result and host-steering continuations, are counted separately, and stop at 516 per life.",
+      "The host may inject at most two one-shot context-safety steers per life; retry, follow-up, replacement, and compaction continuations remain disabled.",
       "S0 stops after 1,200,000 wall-clock milliseconds or 24 tool calls, whichever occurs first.",
       "S1 stops after 14,400,000 wall-clock milliseconds; the complete life stops after 15,600,000 wall-clock milliseconds or 512 cumulative tool calls, whichever occurs first.",
-      "The life stops before provider input exceeds 922,000 tokens or context occupancy reaches the separately frozen hard-stop threshold; the configured context window is 1,050,000 tokens.",
-      "Each provider turn may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times.",
+      "The host aborts before another provider request whenever trusted context plus a conservative pending-result bound cannot prove that input remains at most 922,000 tokens; the configured context window is 1,050,000 tokens.",
+      "Each provider request may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times.",
       "No automatic retry, replacement life, context compaction, or host-authored summary is permitted.",
       "A verifier timeout, resource ceiling, implementation disagreement, or other apparatus failure is inconclusive and is not mathematical rejection.",
       "No receipt or target bundle grants model-launch or provider-billing authority."

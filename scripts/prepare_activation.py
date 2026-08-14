@@ -54,29 +54,34 @@ from export_active import build_active_portfolio
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_PLAN = ROOT / "activation" / "pmw-frontier-choice-2026-08-14.json"
-PLAN_SCHEMA = "AMF_ACTIVATION_PLAN_1"
+PLAN_SCHEMA = "AMF_ACTIVATION_PLAN_2"
 BRIEF_SCHEMA = "AMF_AGENT_BASELINE_BRIEF_1"
 AUTHORITY_SCHEMA = "AMF_CODEX_REVIEWER_AUTHORITY_1"
 SESSION_SCHEMA = "AMF_CODEX_REVIEW_SESSION_EVIDENCE_1"
 ACTIVATION_ID = "pmw-frontier-choice-2026-08-14"
+BUDGET_REVISION_ID = "pmw-frontier-choice-2026-08-14-provider-accounting-v2"
 CHECKED_AT = "2026-08-14"
 
 EXACT_LIMITS = {
     "context_tokens": 1_050_000,
-    "input_tokens": 922_000,
-    "model_calls": 2,
-    "output_tokens": 128_000,
+    "host_context_steers": 2,
+    "host_phase_prompts": 2,
+    "input_tokens_per_provider_request": 922_000,
+    "output_tokens_per_provider_request": 128_000,
+    "provider_request_attempts": 516,
     "tool_calls": 512,
     "verifier_calls": 8,
     "wall_ms": 15_600_000,
 }
 EXACT_MAXIMUM_ARTIFACT_BYTES = 67_108_864
 EXACT_STOP_CONDITIONS = (
-    "Each life uses exactly one persistent Pi RPC session with at most two charged provider turns: S0 then S1.",
+    "Each life uses exactly one persistent Pi RPC session with at most two host-issued phase prompts: S0 then S1; these prompts are not a count of provider requests.",
+    "Actual provider-request attempts include tool-result and host-steering continuations, are counted separately, and stop at 516 per life.",
+    "The host may inject at most two one-shot context-safety steers per life; retry, follow-up, replacement, and compaction continuations remain disabled.",
     "S0 stops after 1,200,000 wall-clock milliseconds or 24 tool calls, whichever occurs first.",
     "S1 stops after 14,400,000 wall-clock milliseconds; the complete life stops after 15,600,000 wall-clock milliseconds or 512 cumulative tool calls, whichever occurs first.",
-    "The life stops before provider input exceeds 922,000 tokens or context occupancy reaches the separately frozen hard-stop threshold; the configured context window is 1,050,000 tokens.",
-    "Each provider turn may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times.",
+    "The host aborts before another provider request whenever trusted context plus a conservative pending-result bound cannot prove that input remains at most 922,000 tokens; the configured context window is 1,050,000 tokens.",
+    "Each provider request may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times.",
     "No automatic retry, replacement life, context compaction, or host-authored summary is permitted.",
     "A verifier timeout, resource ceiling, implementation disagreement, or other apparatus failure is inconclusive and is not mathematical rejection.",
     "No receipt or target bundle grants model-launch or provider-billing authority.",
@@ -396,7 +401,7 @@ def validate_plan(value: object) -> dict[str, Any]:
     if budget["retain_failures"] is not True:
         _fail("activation_plan.budget.retain_failures", "must be true")
     if budget["stop_conditions"] != list(EXACT_STOP_CONDITIONS):
-        _fail("activation_plan.budget.stop_conditions", "must equal the eight frozen conditions in order")
+        _fail("activation_plan.budget.stop_conditions", "must equal the ten frozen conditions in order")
     targets = plan["targets"]
     if type(targets) is not list:
         _fail("activation_plan.targets", "must be a list")
@@ -573,7 +578,7 @@ def _receipt_paths(problem_id: str) -> dict[str, str]:
         "statement": f"{prefix}/review-statement-{ACTIVATION_ID}.json",
         "open_status": f"{prefix}/review-open-status-{ACTIVATION_ID}.json",
         "red_team": f"{prefix}/red-team-{ACTIVATION_ID}.json",
-        "budget": f"{prefix}/budget-{ACTIVATION_ID}.json",
+        "budget": f"{prefix}/budget-{BUDGET_REVISION_ID}.json",
         "bundle": f"targets/{problem_id}/target-bundle.json",
     }
 
@@ -659,11 +664,11 @@ def _build_activation(root: Path, plan_path: Path) -> tuple[PreparedActivation, 
         plan_relative,
         "data/problems.json",
         "data/verifiers.json",
-        "schemas/activation-plan.schema.json",
+        "schemas/activation-plan.v2.schema.json",
         "schemas/active-portfolio.v1.schema.json",
         "schemas/agent-baseline-brief.schema.json",
         "schemas/problem-card.v1.schema.json",
-        "schemas/receipts.v1.schema.json",
+        "schemas/receipts.v2.schema.json",
         "schemas/target-bundle.v1.schema.json",
         "schemas/target-card.v1.schema.json",
         "schemas/verifier-manifest.v1.schema.json",

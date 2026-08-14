@@ -27,7 +27,7 @@ VERIFIER_MANIFEST_SCHEMA = "AMF_VERIFIER_MANIFEST_1"
 BASELINE_RECEIPT_SCHEMA = "AMF_BASELINE_RECEIPT_1"
 REVIEW_RECEIPT_SCHEMA = "AMF_REVIEW_RECEIPT_1"
 RED_TEAM_RECEIPT_SCHEMA = "AMF_RED_TEAM_RECEIPT_1"
-BUDGET_RECEIPT_SCHEMA = "AMF_BUDGET_RECEIPT_1"
+BUDGET_RECEIPT_SCHEMA = "AMF_BUDGET_RECEIPT_2"
 ACTIVE_PORTFOLIO_SCHEMA = "AMF_ACTIVE_PORTFOLIO_1"
 
 FORMALIZATION_LEVELS = frozenset({
@@ -74,9 +74,11 @@ REVIEW_AXES = frozenset({
 REVIEW_VERDICTS = frozenset({"PASS", "CONDITIONAL", "FAIL"})
 RESOURCE_FIELDS = frozenset({
     "context_tokens",
-    "input_tokens",
-    "model_calls",
-    "output_tokens",
+    "host_context_steers",
+    "host_phase_prompts",
+    "input_tokens_per_provider_request",
+    "output_tokens_per_provider_request",
+    "provider_request_attempts",
     "tool_calls",
     "verifier_calls",
     "wall_ms",

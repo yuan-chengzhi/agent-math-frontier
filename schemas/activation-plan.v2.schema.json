@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/schemas/activation-plan.v2.schema.json",
+  "title": "AMF offline activation plan version 2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "activation_id", "checked_at", "execution_policy", "budget", "targets"],
+  "properties": {
+    "schema": {"const": "AMF_ACTIVATION_PLAN_2"},
+    "activation_id": {"const": "pmw-frontier-choice-2026-08-14"},
+    "checked_at": {"const": "2026-08-14"},
+    "execution_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["network", "model_calls", "test_timeout_seconds"],
+      "properties": {
+        "network": {"const": false},
+        "model_calls": {"const": 0},
+        "test_timeout_seconds": {"const": 1200}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["limits", "maximum_artifact_bytes", "retain_failures", "stop_conditions"],
+      "properties": {
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["context_tokens", "host_context_steers", "host_phase_prompts", "input_tokens_per_provider_request", "output_tokens_per_provider_request", "provider_request_attempts", "tool_calls", "verifier_calls", "wall_ms"],
+          "properties": {
+            "context_tokens": {"const": 1050000},
+            "host_context_steers": {"const": 2},
+            "host_phase_prompts": {"const": 2},
+            "input_tokens_per_provider_request": {"const": 922000},
+            "output_tokens_per_provider_request": {"const": 128000},
+            "provider_request_attempts": {"const": 516},
+            "tool_calls": {"const": 512},
+            "verifier_calls": {"const": 8},
+            "wall_ms": {"const": 15600000}
+          }
+        },
+        "maximum_artifact_bytes": {"const": 67108864},
+        "retain_failures": {"const": true},
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10,
+          "prefixItems": [
+            {"const": "Each life uses exactly one persistent Pi RPC session with at most two host-issued phase prompts: S0 then S1; these prompts are not a count of provider requests."},
+            {"const": "Actual provider-request attempts include tool-result and host-steering continuations, are counted separately, and stop at 516 per life."},
+            {"const": "The host may inject at most two one-shot context-safety steers per life; retry, follow-up, replacement, and compaction continuations remain disabled."},
+            {"const": "S0 stops after 1,200,000 wall-clock milliseconds or 24 tool calls, whichever occurs first."},
+            {"const": "S1 stops after 14,400,000 wall-clock milliseconds; the complete life stops after 15,600,000 wall-clock milliseconds or 512 cumulative tool calls, whichever occurs first."},
+            {"const": "The host aborts before another provider request whenever trusted context plus a conservative pending-result bound cannot prove that input remains at most 922,000 tokens; the configured context window is 1,050,000 tokens."},
+            {"const": "Each provider request may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times."},
+            {"const": "No automatic retry, replacement life, context compaction, or host-authored summary is permitted."},
+            {"const": "A verifier timeout, resource ceiling, implementation disagreement, or other apparatus failure is inconclusive and is not mathematical rejection."},
+            {"const": "No receipt or target bundle grants model-launch or provider-billing authority."}
+          ]
+        }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "activation-plan.schema.json#/$defs/target"}
+    }
+  }
+}

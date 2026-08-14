@@ -24,6 +24,7 @@ from prepare_activation import (  # noqa: E402
     ALLOWED_TARGETS,
     AUTHORITY_SCHEMA,
     BRIEF_SCHEMA,
+    BUDGET_REVISION_ID,
     CHECKED_AT,
     EXACT_LIMITS,
     EXACT_MAXIMUM_ARTIFACT_BYTES,
@@ -144,14 +145,14 @@ class PrepareActivationTests(unittest.TestCase):
             validate_plan(drift)
         reordered = copy.deepcopy(original)
         reordered["budget"]["stop_conditions"].reverse()
-        with self.assertRaisesRegex(ActivationError, "eight frozen conditions"):
+        with self.assertRaisesRegex(ActivationError, "ten frozen conditions"):
             validate_plan(reordered)
 
     def test_strict_json_rejects_duplicate_plan_keys(self) -> None:
         body = (ROOT / "activation/pmw-frontier-choice-2026-08-14.json").read_text(encoding="utf-8")
         body = body.replace(
-            '  "schema": "AMF_ACTIVATION_PLAN_1",',
-            '  "schema": "AMF_ACTIVATION_PLAN_1",\n  "schema": "AMF_ACTIVATION_PLAN_1",',
+            '  "schema": "AMF_ACTIVATION_PLAN_2",',
+            '  "schema": "AMF_ACTIVATION_PLAN_2",\n  "schema": "AMF_ACTIVATION_PLAN_2",',
             1,
         )
         with tempfile.TemporaryDirectory() as directory:
@@ -207,7 +208,7 @@ class PrepareActivationTests(unittest.TestCase):
             self.assertEqual(write_outputs(root, prepared), ())
             budget_path = root / (
                 "targets/erdos-64/evidence/receipts/"
-                "budget-pmw-frontier-choice-2026-08-14.json"
+                f"budget-{BUDGET_REVISION_ID}.json"
             )
             budget = load_json(budget_path)
             self.assertEqual(budget["limits"], EXACT_LIMITS)
