@@ -12,15 +12,16 @@
 
 不要直接编辑 `catalog/`。不要复制没有明确再分发许可的完整题面或数据。不要把记录改进、有限参数解决、子类排除、文献重发现写成完整问题已解决。
 
-## 进入 experimental portfolio
+## 进入机器实验组合
 
-先跑实验不要求伪造完整 active receipts，但至少必须同时提交：冻结且绑定原问题卡
-revision 的 `target-card.json`、严格候选 JSON Schema、可离线运行的版本化 verifier
+取得 `experiment-ready` 资格不要求伪造完整 `audited_active` receipts，但至少必须
+同时提交：冻结且绑定原问题卡 revision 的 `target-card.json`、严格候选 JSON Schema、
+可离线运行的版本化 verifier
 manifest，以及能覆盖边界/恶意输入的测试。`scripts/export_experimental.py` 会自动要求
 每一个 `proof_assistant` 或 `executable_spec` 问题都有这些工件，并检查 verifier 的
 `binds_verification_mode`。实验角色不等于 novelty 或 statement-fidelity 通过。
 
-## 晋升 active
+## 晋升 audited active
 
 不要单独把 `stage` 改成 `active`，也不要提交 placeholder reviewer、虚构的
 红队结论或只写名字而不能运行的 verifier。晋升 PR 必须同时提供：
@@ -41,5 +42,5 @@ manifest，以及能覆盖边界/恶意输入的测试。`scripts/export_experim
 还会检查跨文件身份、SHA-256、路径逃逸、reviewer 分离、source revision、
 特殊文件和输入大小。Review receipt 只形成可审计的身份/流程与字节绑定，
 不构成数学真实性证明、身份认证或密码学签名；晋升者仍须独立核验这些事实。
-运行 `make active && make check` 生成并验证唯一的 PMW 输入
+运行 `make active && make check` 生成并验证唯一的严格 PMW 输入
 `data/active-portfolio.json`。该导出是生成物，不能用手工编辑绕过检查。

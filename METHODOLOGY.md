@@ -6,10 +6,10 @@
 
 因此，本项目不把以下信号单独视为“适合”：题目短、著名、有奖金、存在 Lean 文件、有限、模型写出了长证明、多个相似模型都同意，或 evaluator 数值有所提升。
 
-## 2. 三层池，而不是一张题单
+## 2. 四层状态管线，而不是一张题单
 
 ```text
-raw catalog ──审计──> curated candidates ──冻结接口──> experimental runs ──独立审核──> active attacks
+raw catalog ──审计──> curated candidates ──冻结接口──> experimental runs ──独立审核──> audited active attacks
      │                    │                                  │                         │
      └─可过期、可冲突     └─仍非机器入口                     └─可试验，不可冒充审查    └─保存全部成本与失败
 ```
@@ -18,7 +18,7 @@ raw catalog ──审计──> curated candidates ──冻结接口──> exp
 - `curated candidates`：有规范来源、可执行目标、验证路线、风险和部分进展定义。
 - `experimental runs`：已有内容寻址的 target card、候选 schema 和可运行 verifier；
   允许先测 agent—任务匹配，但新颖性、statement fidelity 和 evaluator 红队仍可未完成。
-- `active attacks`：两名独立 reviewer 完成状态/题意审核，完整报告与 reviewer/session 过程证据已内容绑定，evaluator 已红队，预算与工件已冻结。
+- `audited active attacks`：两名独立 reviewer 完成状态/题意审核，完整报告与 reviewer/session 过程证据已内容绑定，evaluator 已红队，预算与工件已冻结。
 
 结果不会直接覆盖题目状态；状态变化以追加事件记录。
 
@@ -36,7 +36,7 @@ raw catalog ──审计──> curated candidates ──冻结接口──> exp
 
 ## 4. 五个硬门槛
 
-精选候选晋升 active 前，每项必须为 `pass`：
+精选候选晋升 `audited_active` 前，每项必须为 `pass`：
 
 1. `open_status`：原始出处、最近核查日期、检索记录与冲突证据齐全；
 2. `exact_target`：量词、边界、变体、完整成功和部分成功条件已冻结；
@@ -48,7 +48,7 @@ raw catalog ──审计──> curated candidates ──冻结接口──> exp
 
 实验层不降低这五个门槛，而是把“可以运行 verifier”与“已经获准提出研究结论”
 拆成两个状态。实验结果可用于决定是否值得支付完整审查成本；只有全部门槛为
-`pass` 且 receipts 齐全时，才进入严格 active 导出。
+`pass` 且 receipts 齐全时，才进入严格 audited-active 导出。
 
 ## 5. 九维向量，不求和
 

@@ -1,11 +1,17 @@
-# Frozen experiment and active targets
+# Runnable and audited targets
 
-Every machine-addressable experiment has at least `target-card.json` and
-`candidate.schema.json`, and selects a registered versioned verifier. These
-minimal packages feed `data/experimental-portfolio.json`; they are runnable,
-but do not imply completed novelty, fidelity, or red-team review.
+All 14 machine-addressable targets are **experiment-ready**: each has at least
+`target-card.json` and `candidate.schema.json`, and selects a registered,
+versioned offline verifier. This is a human-facing umbrella term, not a schema
+value. These packages feed `data/experimental-portfolio.json`; they are
+runnable, but do not imply completed novelty, statement-fidelity, open-status,
+or red-team review.
 
-An audited active promotion additionally has this shape:
+The frozen machine roles remain distinct: 3 targets are `audited_active`, while
+11 are `experimental_active`. Only the former belong to the strict active
+portfolio.
+
+Promotion into the strict audited portfolio additionally requires this shape:
 
 ```text
 targets/<problem-id>/

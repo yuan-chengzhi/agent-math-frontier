@@ -2,14 +2,34 @@
 
 面向数学 research agent 的开放问题候选池与证据账本。项目不追求“收录最多”或“AI 解题数”，而是回答四件事：题目为什么适合当前 agent、产物怎样独立验证、问题是否仍开放、即使没有完全解决哪些部分进展仍有价值。
 
-截至 **2026-08-14**，首版包含：
+## 当前状态
 
-- 17 张人工问题卡：6 题有固定 Lean theorem skeleton，8 题尚无完整形式化但有精确可执行终检，3 题仍需 CAS/领域专家审核；
-- 14 题已有机器可寻址实验包：6 题绑定固定 Lean 陈述，8 题绑定精确
-  executable spec；其中 3 题通过完整审查成为严格 `active`，11 题可作
-  未审计的 `experimental_active`；
-- 1,217 条 Erdős Problems 元数据，以及 Formal Conjectures 中 1,301 个 `research open` 声明的可再生快照；
-- 5 个隔离案例，用来保存状态冲突、变体歧义和刚发生的解决声明。
+组合快照冻结于 **2026-08-14**。首页所说的 `experiment-ready` 是便于阅读的
+总称，不新增或改写机器 schema：它表示 target card、候选格式和离线 verifier
+已经闭合，可以交给 solver/evaluator 实验；它不表示开放状态、新颖性、题意忠实度
+和 verifier 红队均已通过。
+
+| 范围 | 数量 | 当前含义 |
+|---|---:|---|
+| 人工问题卡 | 17 | 6 题有固定 proof-assistant 陈述，8 题有精确 executable spec，3 题仍需 CAS/领域专家审核 |
+| `experiment-ready` | 14/14 | 全部机器实验目标均有内容固定的 target、候选 schema 和离线 verifier |
+| `audited_active` | 3 | 已完成独立题意/开放状态审核、evaluator 红队、基线和预算收据 |
+| `experimental_active` | 11 | 已开放实验，但尚未取得完整严格审核资格 |
+
+14 个机器实验目标按证据角色分为：
+
+- `audited_active`：`degree-diameter-3-9-record`、`erdos-64`、
+  `frontier-stretched-lr`；
+- `experimental_active`：`aim-60-first-prime`、`cage-cubic-g13-record`、
+  `costas-order-32`、`erdos-23`、`erdos-307`、`erdos-7`、`erdos-835`、
+  `frontier-ramsey-book`、`frontier-small-diophantine`、`ramsey-r55`、
+  `srg-69-20-7-5`。
+
+其中 6 题的完整原命题有固定 proof-assistant statement，8 题只有精确
+executable spec；二者均可运行有限候选 verifier，但机器接受的结论边界并不相同。
+完整逐题说明见[14 题实验组合](docs/experimental-portfolio.md)。除这 17 张人工卡外，
+仓库还保存 1,217 条 Erdős Problems 元数据、Formal Conjectures 中 1,301 个
+`research open` 声明的可再生快照，以及 5 个状态/变体隔离案例。
 
 ## 先看哪里
 
@@ -22,23 +42,11 @@
 - [14 题实验组合](docs/experimental-portfolio.md)：每题实际检查什么、结论边界和运行入口。
 - [隔离项](catalog/quarantine.md)：为什么数据库标签或 Lean 文件不能单独作为依据。
 
-当前严格 active target 仍是三条：
-
-1. degree–diameter `(3,9)`：构造至少 601 顶点、最大度数至多 3、
-   直径至多 9 的图；
-2. Erdős #64：在至多 64 个顶点内寻找避开全部 2 的幂长度环的
-   最小度数至少 3 的反例图；
-3. stretched Littlewood–Richardson：在冻结的长度/大小界内寻找普通
-   单项式基系数为负的精确反例。
-
-它们覆盖记录构造、开放图论反例和代数组合有界反例，并都具有严格的
-target-specific executable verifier。为了先实验再决定是否投入完整审核，另有
-[`data/experimental-portfolio.json`](data/experimental-portfolio.json)：它精确包含
-全部 14 个机器可寻址目标，但不把缺失的独立审核和红队收据冒充已经完成。
-因此实验口径是 14/14 active（3 个 `audited_active` + 11 个
-`experimental_active`），严格研究结论口径仍只有 3 个 active。
-AIM #60 的旧 v1 保留作回归，实验组合选择临时重设到 1455091 门槛的 v2；
-其 open-status gate 仍为 `fail`，所以不能被当作已确认的新纪录攻击。
+机器字段 `role=audited_active` 对应严格研究资格；
+`role=experimental_active` 只对应先行实验资格。下文单独出现的 “active” 均指前者，
+不会用“14 个 active”混称这两层。AIM #60 的旧 v1 保留作回归，实验组合选择临时
+重设到 1455091 门槛的 v2；其 open-status gate 仍为 `fail`，所以不能被当作
+已确认的新纪录攻击。
 
 ## 这里怎样使用“形式化”
 
@@ -57,7 +65,7 @@ Erdős 数据里的 `formalized: yes` 表示**陈述**已有形式化，`formal_
 
 每题记录九个 0–3 维度：可验证性、反馈密度、表示紧凑性、可拆分性、工具成熟度、部分进展价值、数学价值、开放状态可信度、资源可行性。它们不相加，因为高可验证性不能抵消题意误译，高知名度也不能抵消完全没有反馈。
 
-进入 active queue 前还必须通过五个硬门槛：开放状态可追溯、目标精确、存在独立验证路径、部分进展预先定义、实验可复现。
+进入严格 `audited_active` queue 前还必须通过五个硬门槛：开放状态可追溯、目标精确、存在独立验证路径、部分进展预先定义、实验可复现。
 
 ## 本地使用
 
@@ -76,12 +84,12 @@ make sync
 
 `data/upstream/` 只镜像简化元数据和声明位置，不复制完整题面。人工判断编辑 `data/problems.json`、`data/sources.json`、`data/precedents.json` 与 `data/quarantine.json`；`catalog/` 由脚本生成。
 
-## 机器可执行的 active 边界
+## 严格审核边界：3 个 audited active
 
 `shortlist` 仍只是人工审核优先级。严格、已审计的攻击面是
 [`data/active-portfolio.json`](data/active-portfolio.json)，它由
 `scripts/export_active.py` 从完整问题账本和内容寻址 target bundle
-确定性导出。当前导出精确包含上述 3 个 active target。
+确定性导出。当前导出精确包含 3 个 `audited_active` target。
 
 一个问题只有在以下条件全部满足时才能进入该文件：五个 hard gate
 均为 `pass`；`targets/<problem-id>/target-bundle.json` 存在；target card、
@@ -115,10 +123,11 @@ JSON 逻辑身份使用 `scripts/contracts.py` 的 canonical encoding；文件�
 且只接受 repository 内的普通非符号链接文件。版本化 JSON Schema 位于
 `schemas/`。
 
-## 先跑的 experimental 边界
+## 机器实验边界：14 个 experiment-ready
 
 `data/experimental-portfolio.json` 是 14 题的实验入口。每题至少具备：冻结
-target card、候选 JSON Schema、与问题语义匹配的版本化离线 verifier。其角色分为：
+target card、候选 JSON Schema、与问题语义匹配的版本化离线 verifier。
+`experiment-ready` 覆盖以下两个机器角色：
 
 - `audited_active`：3 题，亦存在完整 target bundle；
 - `experimental_active`：11 题，已开放给 solver/evaluator 实验，但尚不能据此声称
@@ -149,9 +158,9 @@ GitHub Actions 会每周检查上游整库漂移，并在每月 1 日、15 日�
 data/upstream/     可再生 raw 索引，不等于开放或适合
 data/problems.json 人工精选问题卡，是判断的唯一数据源
 data/verifiers.json 可执行 verifier 注册表；空注册表是合法状态
-data/active-portfolio.json 唯一 fail-closed active 导出
+data/active-portfolio.json 唯一 fail-closed audited-active 导出
 data/experimental-portfolio.json 14 题机器实验导出
-targets/           实验 target card；严格 active 项另有完整 target bundle
+targets/           experiment-ready target card；audited 项另有完整 target bundle
 schemas/           problem/target/receipt 的严格版本化 schema
 catalog/           面向阅读的自动生成视图
 docs/              独立审计与决策记录
