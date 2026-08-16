@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "frontier-ramsey-book",
+  "problem_card_sha256": "ea76325310731894f64a4b7f107d8b5c1ddd6667ad9cb614877c6980736ba787",
+  "canonical_statement": "For every integer n from 2 through 100, provide explicitly a graph on 4n-2 labelled vertices containing no book B_(n-1), while its complement contains no book B_n, where B_t consists of t triangles sharing an edge. Graphs are supplied as column-major upper-triangle adjacency strings. This finite explicit-output profile tests the public n<=100 behavior but does not by itself provide the requested general algorithm for all n.",
+  "source_revision": "frontiermath-page-2026-08-14",
+  "claim_scope": "PARAMETER_RANGE",
+  "success_criterion": "amf.book.range100.v1 checks all 99 exact graph strings and accepts after confirming that every graph edge has fewer than n-1 common neighbors and every nonedge has fewer than n common nonneighbors. Novelty and the stronger all-n algorithm claim require separate review.",
+  "partial_progress_criterion": "Retain any newly verified previously uncovered n, a reusable construction family, improved search code, and rigorous reductions explaining why a family avoids the two book graphs.",
+  "stop_conditions": [
+    "The moving public progress log makes the chosen finite range entirely redundant.",
+    "The official adjacency ordering or book convention changes.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/frontier-ramsey-book/candidate.schema.json", "bytes": 755, "sha256": "3cb0142c34d869a8b53062a00d8044bfaa0c03a10169e384c077c28f086e2e20"},
+  "verifier_id": "amf.book.range100.v1"
+}

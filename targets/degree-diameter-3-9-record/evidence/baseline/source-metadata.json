@@ -1,0 +1,45 @@
+{
+  "schema": "AMF_DD39_SOURCE_EVIDENCE_2",
+  "status": "HASH_AND_FACT_METADATA_ONLY_THIRD_PARTY_GRAPH_NOT_REDISTRIBUTED",
+  "checked_at": "2026-08-14",
+  "table": {
+    "url": "https://web.mat.upc.edu/francesc.comellas/delta-d/taula_delta_d.html",
+    "source_revision": "degree-diameter-table-2026-08-13",
+    "listed_order": 600
+  },
+  "description_url": "https://web.mat.upc.edu/francesc.comellas/delta-d/desc_g/desc_g9.html",
+  "direct_member_url": "https://web.mat.upc.edu/francesc.comellas/delta-d/desc_g/adjacencies/adjD9/Exoo_600.txt",
+  "versioned_dataset": {
+    "landing_url": "https://data.mendeley.com/datasets/d75dzbjd4k/11",
+    "doi": "10.17632/d75dzbjd4k.11",
+    "outer_license_label": "CC BY 4.0",
+    "archive_filename": "delta-d@260127.zip",
+    "archive_file_id": "f3887e12-e959-4c50-b0b1-071638c1a70a",
+    "archive_bytes_reported_by_mendeley": 120599994,
+    "archive_sha256_reported_by_mendeley": "aafc66b97eba2c007ef53145bb7a2c0bb413d2d0faeacfaa4d69d44bcc00bf14",
+    "member_path": "delta-d/desc_g/adjacencies/adjD9/Exoo_600.txt",
+    "member_uncompressed_bytes": 13201,
+    "member_crc32": "98cd53e6",
+    "member_sha256": "12de7e2c303955f57196888a0eecae17d7e872616a638d6f7772b09f77f34106"
+  },
+  "normalization": {
+    "script_path": "targets/degree-diameter-3-9-record/evidence/baseline/convert_implicit.py",
+    "normalized_bytes_when_derived": 8727,
+    "normalized_sha256_when_derived": "efa7763007d3f1771c547d47b1ab8280ecf8f42b854850bc3e814a26b47ef5ae"
+  },
+  "independently_agreed_observed_facts": {
+    "n": 600,
+    "edge_count": 900,
+    "max_degree": 3,
+    "connected": true,
+    "diameter": 9
+  },
+  "redistribution_policy": {
+    "verdict": "CONDITIONAL",
+    "raw_member_in_repository": false,
+    "complete_normalized_graph_in_repository": false,
+    "reason": "The outer dataset is CC BY 4.0, but the graph is attributed to Geoffrey Exoo and no file-level grant resolving Mendeley's third-party-content reservation was found.",
+    "audit_path": "targets/degree-diameter-3-9-record/evidence/reviews/baseline-license-codex-2026-08-14.md"
+  },
+  "promotion_note": "This manifest freezes source, hash, licensing caveat and reproduced facts. It is not the third-party adjacency list, a novelty guarantee, or a mathematical closure receipt."
+}

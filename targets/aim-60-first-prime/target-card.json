@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "aim-60-first-prime",
+  "problem_card_sha256": "de580d02a3c94923e8a1458b917244fc06969acb9f43278881ea4810e7ba05d6",
+  "canonical_statement": "Produce a positive integer a with 1<=a<10^20 and an integer x0 with 1455091<=x0<=10000000 such that x^12+a is composite for every positive integer 1<=x<x0, while x0^12+a is prime. The threshold is one above the strongest same-form public example found in the 2026-08-14 search (a=26060579, reported x0=1455090). That report is a provisional experimental baseline, not an independently certified current world record. Acceptance establishes the exact finite instance only, not global optimality or novelty.",
+  "source_revision": "aim-aint26-2026-05",
+  "claim_scope": "FINITE_INSTANCE",
+  "success_criterion": "The content-pinned amf.aim60.certificate.v2 checker accepts after enumerating every positive predecessor, validating every congruence rule and remaining exact factor, and checking an Atkin--Morain ECPP proof for x0^12+a. A refreshed record search and independent certification of the provisional baseline remain mandatory before any novelty claim.",
+  "partial_progress_criterion": "Retain an independent certificate reconstruction for the reported x0=1455090 instance, exact candidates between the old 616980 example and the v2 threshold, stronger congruence covers, and reusable certificate-generation improvements.",
+  "stop_conditions": [
+    "A current source reports an in-domain first-prime index at least as large as the v2 threshold.",
+    "The provisional 1455090 baseline or the positive-a interpretation fails independent reconstruction.",
+    "The verifier reaches its deterministic resource limits or the separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {
+    "path": "targets/aim-60-first-prime/candidate.v2.schema.json",
+    "bytes": 2604,
+    "sha256": "280a3012cc06accd08e25d7f52f79eaa000b22fca0fa5988a344b39e3d64e096"
+  },
+  "verifier_id": "amf.aim60.certificate.v2"
+}

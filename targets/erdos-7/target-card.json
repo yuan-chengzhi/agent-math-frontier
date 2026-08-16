@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "erdos-7",
+  "problem_card_sha256": "ea439551025ad680a36ea4b4d8f9720b4a1c043d91c53359795f122c2a1253f7",
+  "canonical_statement": "Produce a finite family of congruence classes r_i modulo m_i that covers every integer, with every modulus m_i odd and greater than 1 and all moduli pairwise distinct. Residues must be canonical in 0<=r_i<m_i. The verifier representation requires at most 512 classes, each modulus at most 10^6, and total least common multiple at most 5,000,000; any accepted witness proves the unrestricted existential statement, but failure within these caps does not prove nonexistence.",
+  "source_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "amf.erdos7.cover.v1 computes the exact common period, marks every residue covered by at least one class, and accepts after verifying oddness, nontriviality, distinctness, and canonical residues. Lean closure and independent reviews remain separate.",
+  "partial_progress_criterion": "Retain new structural restrictions, certified exclusions for a meaningful modulus family, improved lower bounds, and a scalable exact coverage certificate beyond the initial period cap.",
+  "stop_conditions": [
+    "Current literature changes the open status or strict-cover convention.",
+    "The search reaches a candidate whose least common multiple exceeds this verifier profile.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/erdos-7/candidate.schema.json", "bytes": 805, "sha256": "82ac834767a9651693999c07ab02d76dd13c0b7388099618ec1bbb2167254c54"},
+  "verifier_id": "amf.erdos7.cover.v1"
+}

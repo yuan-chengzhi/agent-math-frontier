@@ -7,12 +7,12 @@
 
 | 问题 | 决策 | 本轮冻结目标 | 终检 | 最大风险 |
 |---|---|---|---|---|
-| [Stretched Littlewood–Richardson 多项式的负系数反例](https://epoch.ai/frontiermath/open-problems/stretched-lr-coefficients) | 优先审核 | 输出分拆 λ、μ、ν 以及可独立重算的完整系数多项式。 | exact_integer_polynomial_two_implementations | 实现错误可能制造伪负系数，必须双实现。 |
+| [Stretched Littlewood–Richardson 多项式的负系数反例](https://epoch.ai/frontiermath/open-problems/stretched-lr-coefficients) | 优先审核 | 输出分拆 λ、μ、ν 以及可独立重算的完整系数多项式；已知所有分拆长度至多 4 的范围为非负，搜索应从最大长度至少 5 开始。 | exact_integer_polynomial_two_implementations | 实现错误可能制造伪负系数，必须双实现。 |
 | [Ramsey book graph 构造](https://epoch.ai/frontiermath/open-problems/ramsey-book-graphs) | 孵化 | 冻结一个尚未覆盖的 n，输出邻接矩阵；长期目标是统一构造算法。 | exact_graph_checker | 状态高度易变，可能与在审工作撞题。 |
 | [Small Diophantine Equations 的剩余方程](https://epoch.ai/frontiermath/open-problems/small-diophantine) | 孵化 | 逐方程冻结题面；每题输出三个符合门槛的整数解，不把它等同于证明无穷多解。 | exact_big_integer_substitution | 页面中的 9 题已有部分被解决，必须逐项刷新。 |
-| [AIM #60：使 x^12+a 的首个素数尽量晚出现](https://aimath.org/pastworkshops/aint26problemlist.pdf) | 优先审核 | 把“刷新公开记录”和“证明全局最优”分开；首轮只接受前者，并冻结当前纪录。 | integer_factor_and_primality_certificates | 当前纪录可能在启动前改变，必须重新查询。 |
+| [AIM #60：使 x^12+a 的首个素数尽量晚出现](https://aimath.org/pastworkshops/aint26problemlist.pdf) | 隔离 | 实验 v2 暂以本轮公开检索找到的最强同形报告 x0=1455090 为门槛，寻找 x0≥1455091 的完整证书；该门槛尚不是独立认证的世界纪录，因此只用于先跑实验。 | integer_factor_and_primality_certificates | 1455090 是当前公开检索找到的临时下界，不是经维护者或独立证书确认的世界纪录；提交前必须再次刷新。 |
 | [三正则 girth 13 图的 cage 上界纪录](https://houseofgraphs.org/meta-directory/cages) | 优先审核 | 输出一个顶点数 <272 的 graph6/邻接表证书；不把上界改进写成确定了精确 cage 数。 | exact_graph_regularity_and_girth_checker | cage 记录搜索已有深厚专用方法，通用局部搜索可能只复现旧结果。 |
-| [Degree–diameter (3,9) 图纪录](https://web.mat.upc.edu/francesc.comellas/delta-d/taula_delta_d.html) | 优先审核 | 输出至少 601 顶点的邻接表，并在启动时冻结 600 顶点基线及维护者表版本。 | exact_degree_connectivity_and_bfs_diameter_checker | 表在 2026 年仍频繁更新，攻击开始与提交前都要重新同步。 |
+| [Degree–diameter (3,9) 图纪录](https://web.mat.upc.edu/francesc.comellas/delta-d/taula_delta_d.html) | 优先审核 | 输出至少 601 顶点的邻接表，并在启动时冻结维护者表的 600 顶点基线、来源版本与哈希；由于文件级再分发许可不明确，仓库不内置该第三方邻接表。 | exact_degree_connectivity_and_bfs_diameter_checker | 表在 2026 年仍频繁更新，攻击开始与提交前都要重新同步。 |
 | [强正则图参数 (69,20,7,5) 的存在性](https://jaanos.github.io/tables/graphs/srg/srgtab51-100.html) | 优先审核 | 优先输出一个图；负面工作只能声称排除了预先冻结的对称子类，除非有完整不可满足证书。 | exact_adjacency_matrix_identity_checker | 只在某个群作用或 Cayley 子类中无解不能升级为总体不存在。 |
 | [32 阶 Costas array 构造](https://www.sfu.ca/~jed/Research/costas.html) | 孵化 | 输出 32 项排列，并以独立实现检查所有位移；启动前做 48 小时最新文献/数据库审计。 | exact_permutation_displacement_checker | 历史搜索量巨大，agent 可能只重现已知失败启发式。 |
 

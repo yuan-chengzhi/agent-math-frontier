@@ -34,15 +34,15 @@
 ## Erdős #64：最小度至少 3 的图中的 2 的幂长圈
 
 - ID / 决策：`erdos-64` / 孵化
-- 来源状态：falsifiable；可信度 medium；2026-08-14 核查
-- 形式化强度：证明助手；fidelity `unreviewed`
-- 目标：优先寻找有限反例；正面方向则拆出可在 Lean 中复用的结构引理。
-- 成功工件：反例邻接表及精确圈枚举证书，或无 sorry 的完整 Lean 证明。
-- 有价值的部分进展：对新图族的证明、反例最小规模下界或可复用图论引理。
-- 验证：`exact_graph_counterexample_or_lean_proof` — 反例验证便宜，但没有反例阶数上界，有限可验不等于有限可判定。
+- 来源状态：falsifiable；可信度 high；2026-08-14 核查
+- 形式化强度：证明助手；fidelity `reviewed_pass_2026-08-14`
+- 目标：可自由推进自然语言结构理论、计算搜索或 Lean；当前机器终检只接纳 4 至 64 个顶点的显式有限简单图反例。
+- 成功工件：严格边表给出的有限反例，并由资源有界的精确 checker 完整确认最小度至少 3 且不存在长度 2^k（k≥2）的简单圈。自然语言或 Lean 根证明须待独立安全 checker 后另行闭合。
+- 有价值的部分进展：对新图族的证明、超过全图至 31 点或三正则二分图至 58 点等已知有限基线的可复现结果、最小反例结构约束、反例规模下界或可复用 Lean 图论引理；这些均不自动等于根闭合。
+- 验证：`exact_bounded_graph_counterexample_checker` — 当前 verifier 只对显式 4 至 64 顶点反例作无假阳性的精确终检；搜索步数超限会返回非权威 apparatus error，而不是把候选判假。不存在反例阶数上界，有限搜索、子类定理和未配安全 checker 的 Lean 文件均不构成根闭合。
 - 硬门槛：`open_status=pass；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=pass`
 - 九维向量：`验3 馈1 表3 拆2 具2 部2 值3 态2 资1`
-- 风险：无规模上界，盲目枚举很可能没有信息。；需要图生成、同构消除和理论引理共同驱动。
+- 风险：无规模上界，盲目枚举很可能没有信息。；需要图生成、同构消除和理论引理共同驱动。；2026 年路线变化快：三正则二分图至 58 点已被排除，重复该范围不构成新进展。
 - 选择判断：高价值但不宜作为短期成功率任务；先要求理论化搜索策略。
 
 ## Erdős #23：三角形自由图的二分化删边界
@@ -92,13 +92,13 @@
 - ID / 决策：`frontier-stretched-lr` / 优先审核
 - 来源状态：unsolved；可信度 high；2026-08-14 核查
 - 形式化强度：精确可执行验证；fidelity `natural_language_primary`
-- 目标：输出分拆 λ、μ、ν 以及可独立重算的完整系数多项式。
+- 目标：输出分拆 λ、μ、ν 以及可独立重算的完整系数多项式；已知所有分拆长度至多 4 的范围为非负，搜索应从最大长度至少 5 开始。
 - 成功工件：有限分拆三元组、精确 LR 系数计算和第二套独立实现的复核。
-- 有价值的部分进展：证明更小参数区间不存在反例，或给出能排除大类候选的结构引理。
-- 验证：`exact_integer_polynomial_two_implementations` — 官方定制 verifier 未完全公开；启动前应以 Sage 与独立算法交叉验证。
-- 硬门槛：`open_status=pass；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=conditional`
+- 有价值的部分进展：在不重复已知长度至多 4 定理的前提下，证明新的有限参数区间不存在反例，或给出能排除大类候选的结构引理。
+- 验证：`exact_integer_polynomial_two_implementations` — 仓库内两条精确算法已由第三个小规模实现交叉核对并完成 verifier 红队；资源超限始终是非结论性的 apparatus failure。
+- 硬门槛：`open_status=pass；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=pass`
 - 九维向量：`验3 馈2 表3 拆2 具2 部2 值3 态3 资3`
-- 风险：实现错误可能制造伪负系数，必须双实现。；有限边界来自当前题面，不能悄悄放宽后仍声称解决该任务。
+- 风险：实现错误可能制造伪负系数，必须双实现。；有限边界来自当前题面，不能悄悄放宽后仍声称解决该任务。；arXiv:2607.22301 已证明三分拆长度均至多 4 时系数非负；在该范围继续盲搜只会重复已知结果。
 - 选择判断：首版最强的未形式化候选：有限、精确、价值较高且证书紧凑。
 
 ## Ramsey book graph 构造
@@ -173,17 +173,17 @@
 
 ## AIM #60：使 x^12+a 的首个素数尽量晚出现
 
-- ID / 决策：`aim-60-first-prime` / 优先审核
+- ID / 决策：`aim-60-first-prime` / 隔离
 - 来源状态：unsurprising if AI can do in the near future；可信度 high；2026-08-14 核查
 - 形式化强度：精确可执行验证；fidelity `expert_workshop_primary`
-- 目标：把“刷新公开记录”和“证明全局最优”分开；首轮只接受前者，并冻结当前纪录。
+- 目标：实验 v2 暂以本轮公开检索找到的最强同形报告 x0=1455090 为门槛，寻找 x0≥1455091 的完整证书；该门槛尚不是独立认证的世界纪录，因此只用于先跑实验。
 - 成功工件：a、此前所有值合数的因子证书、首个素值的素性证书和完整搜索代码。
-- 有价值的部分进展：任何严格刷新纪录的 a、覆盖同余构造或更快的认证流水线。
-- 验证：`integer_factor_and_primality_certificates` — 记录候选可严格检查；证明 a<10^20 中全局最优是完全不同且可能不可承受的任务。
-- 硬门槛：`open_status=pass；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=pass`
+- 有价值的部分进展：独立认证公开的 1455090 实例、厘清最新公开基线、覆盖同余构造或更快的认证流水线。
+- 验证：`integer_factor_and_primality_certificates` — v1 保留 616980 回归，v2 对 x0≥1455091 的候选作严格终检；是否刷新当前纪录和 a<10^20 中全局最优都是另外的任务。
+- 硬门槛：`open_status=fail；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=pass`
 - 九维向量：`验3 馈3 表3 拆2 具3 部3 值2 态3 资1`
-- 风险：当前纪录可能在启动前改变，必须重新查询。；筛选吞吐量不能代替每个合数和最终素数的独立证书。
-- 选择判断：很符合 generate-score-verify 循环；适合先做可复现的纪录改进。
+- 风险：1455090 是当前公开检索找到的临时下界，不是经维护者或独立证书确认的世界纪录；提交前必须再次刷新。；筛选吞吐量不能代替每个合数和最终素数的独立证书。
+- 选择判断：很符合 generate-score-verify 循环；v2 可先测 agent 搜索能力，但 open-status gate 保持 fail，直到临时基线被独立认证。
 
 ## 三正则 girth 13 图的 cage 上界纪录
 
@@ -204,13 +204,13 @@
 - ID / 决策：`degree-diameter-3-9-record` / 优先审核
 - 来源状态：largest listed (3,9) graph has 600 vertices；可信度 high；2026-08-14 核查
 - 形式化强度：精确可执行验证；fidelity `maintainer_table_primary`
-- 目标：输出至少 601 顶点的邻接表，并在启动时冻结 600 顶点基线及维护者表版本。
+- 目标：输出至少 601 顶点的邻接表，并在启动时冻结维护者表的 600 顶点基线、来源版本与哈希；由于文件级再分发许可不明确，仓库不内置该第三方邻接表。
 - 成功工件：邻接表、最大度与全对最短路检查、规范哈希和独立 Sage/自写 checker 复核。
 - 有价值的部分进展：任何严格刷新记录的图，或对固定代数构造族的更优参数。
 - 验证：`exact_degree_connectivity_and_bfs_diameter_checker` — 终检是确定性的；直径和顶点数都可作为连续优化信号。
 - 硬门槛：`open_status=pass；exact_target=pass；verification_path=pass；valuable_partial_progress=pass；reproducibility=pass`
 - 九维向量：`验3 馈3 表3 拆2 具3 部3 值2 态3 资2`
-- 风险：表在 2026 年仍频繁更新，攻击开始与提交前都要重新同步。；需要区分最大度至多 3 与三正则变体，不能偷换条件。
+- 风险：表在 2026 年仍频繁更新，攻击开始与提交前都要重新同步。；需要区分最大度至多 3 与三正则变体，不能偷换条件。；Exoo_600 的外层数据集为 CC BY 4.0，但文件级第三方权利不明确；只能保存来源、哈希和自有测量，未经许可不再分发原图。
 - 选择判断：老的 (3,9) 格比刚更新的高阶格更适合差异化试点，且验证基础设施简单。
 
 ## 强正则图参数 (69,20,7,5) 的存在性

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/schemas/active-portfolio.v1.schema.json",
+  "title": "AMF active portfolio export version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "source_schema_version", "problem_card_schema", "as_of", "problem_catalog_sha256", "verifier_registry_sha256", "targets", "portfolio_ref"],
+  "properties": {
+    "schema": {"const": "AMF_ACTIVE_PORTFOLIO_1"},
+    "source_schema_version": {"const": 1},
+    "problem_card_schema": {"const": "AMF_PROBLEM_CARD_1"},
+    "as_of": {"type": "string", "format": "date"},
+    "problem_catalog_sha256": {"$ref": "#/$defs/sha256"},
+    "verifier_registry_sha256": {"$ref": "#/$defs/sha256"},
+    "portfolio_ref": {"type": "string", "pattern": "^active-portfolio/sha256/[0-9a-f]{64}$"},
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["problem_id", "problem_card_sha256", "target_bundle", "target_card_sha256", "verification_mode", "verifier_id", "claim_scope"],
+        "properties": {
+          "problem_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,127}$"},
+          "problem_card_sha256": {"$ref": "#/$defs/sha256"},
+          "target_bundle": {"$ref": "#/$defs/fileBinding"},
+          "target_card_sha256": {"$ref": "#/$defs/sha256"},
+          "verification_mode": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,127}$"},
+          "verifier_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,110}\\.v[1-9][0-9]{0,15}$"},
+          "claim_scope": {
+            "enum": ["FULL_PROBLEM", "RECORD_IMPROVEMENT", "BOUNDED_COUNTEREXAMPLE", "FINITE_INSTANCE", "PARAMETER_RANGE", "SUBCLASS_RESULT", "FORMALIZATION_MILESTONE"]
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "fileBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 1073741824},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

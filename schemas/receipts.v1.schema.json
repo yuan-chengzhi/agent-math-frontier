@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/schemas/receipts.v1.schema.json",
+  "title": "AMF active-target receipts version 1",
+  "oneOf": [
+    {"$ref": "#/$defs/baselineReceipt"},
+    {"$ref": "#/$defs/reviewReceipt"},
+    {"$ref": "#/$defs/redTeamReceipt"},
+    {"$ref": "#/$defs/budgetReceipt"}
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "problemId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,127}$"},
+    "fileBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0, "maximum": 1073741824},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "baselineReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "problem_id", "target_card_sha256", "baseline_id", "description", "source_revision", "checked_at", "artifacts"],
+      "properties": {
+        "schema": {"const": "AMF_BASELINE_RECEIPT_1"},
+        "problem_id": {"$ref": "#/$defs/problemId"},
+        "target_card_sha256": {"$ref": "#/$defs/sha256"},
+        "baseline_id": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "source_revision": {"type": "string", "minLength": 1},
+        "checked_at": {"type": "string", "format": "date"},
+        "artifacts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/fileBinding"}}
+      }
+    },
+    "reviewReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "problem_id", "target_card_sha256", "review_id", "reviewer_id", "axis", "verdict", "independent_from_solver", "source_revision", "report", "reviewer_authority", "review_session_evidence", "attestation_scope", "checked_at"],
+      "properties": {
+        "schema": {"const": "AMF_REVIEW_RECEIPT_1"},
+        "problem_id": {"$ref": "#/$defs/problemId"},
+        "target_card_sha256": {"$ref": "#/$defs/sha256"},
+        "review_id": {"type": "string", "minLength": 1},
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "axis": {"enum": ["STATEMENT_FIDELITY", "OPEN_STATUS_AND_NOVELTY", "MATHEMATICAL_SIGNIFICANCE"]},
+        "verdict": {"enum": ["PASS", "CONDITIONAL", "FAIL"]},
+        "independent_from_solver": {"const": true},
+        "source_revision": {"type": "string", "minLength": 1},
+        "report": {"$ref": "#/$defs/fileBinding"},
+        "reviewer_authority": {"$ref": "#/$defs/fileBinding"},
+        "review_session_evidence": {"$ref": "#/$defs/fileBinding"},
+        "attestation_scope": {"const": "IDENTITY_AND_PROCESS_BINDING_ONLY_NOT_MATHEMATICAL_TRUTH_OR_CRYPTOGRAPHIC_SIGNATURE"},
+        "checked_at": {"type": "string", "format": "date"}
+      }
+    },
+    "redTeamReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "problem_id", "target_card_sha256", "verifier_id", "verifier_manifest_sha256", "reviewer_id", "corpus", "report", "case_count", "passed", "checked_at"],
+      "properties": {
+        "schema": {"const": "AMF_RED_TEAM_RECEIPT_1"},
+        "problem_id": {"$ref": "#/$defs/problemId"},
+        "target_card_sha256": {"$ref": "#/$defs/sha256"},
+        "verifier_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{0,110}\\.v[1-9][0-9]{0,15}$"},
+        "verifier_manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "reviewer_id": {"type": "string", "minLength": 1},
+        "corpus": {"$ref": "#/$defs/fileBinding"},
+        "report": {"$ref": "#/$defs/fileBinding"},
+        "case_count": {"type": "integer", "minimum": 1},
+        "passed": {"const": true},
+        "checked_at": {"type": "string", "format": "date"}
+      }
+    },
+    "budgetReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "problem_id", "target_card_sha256", "limits", "maximum_artifact_bytes", "retain_failures", "stop_conditions", "checked_at"],
+      "properties": {
+        "schema": {"const": "AMF_BUDGET_RECEIPT_1"},
+        "problem_id": {"$ref": "#/$defs/problemId"},
+        "target_card_sha256": {"$ref": "#/$defs/sha256"},
+        "limits": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["context_tokens", "input_tokens", "model_calls", "output_tokens", "tool_calls", "verifier_calls", "wall_ms"],
+          "properties": {
+            "context_tokens": {"type": "integer", "minimum": 1},
+            "input_tokens": {"type": "integer", "minimum": 1},
+            "model_calls": {"type": "integer", "minimum": 1},
+            "output_tokens": {"type": "integer", "minimum": 1},
+            "tool_calls": {"type": "integer", "minimum": 1},
+            "verifier_calls": {"type": "integer", "minimum": 1},
+            "wall_ms": {"type": "integer", "minimum": 1}
+          }
+        },
+        "maximum_artifact_bytes": {"type": "integer", "minimum": 1},
+        "retain_failures": {"const": true},
+        "stop_conditions": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "checked_at": {"type": "string", "format": "date"}
+      }
+    }
+  }
+}

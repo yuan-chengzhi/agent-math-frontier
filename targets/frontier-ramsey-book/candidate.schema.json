@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/frontier-ramsey-book/candidate.schema.json",
+  "title": "Explicit Book Ramsey graphs for every n from 2 through 100",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "n_min", "n_max", "graphs"],
+  "properties": {
+    "schema": {"const": "AMF_BOOK_RANGE100_GRAPHS_1"},
+    "n_min": {"const": 2},
+    "n_max": {"const": 100},
+    "graphs": {
+      "type": "array",
+      "minItems": 99,
+      "maxItems": 99,
+      "items": {"type": "string", "pattern": "^[01]+$"},
+      "description": "Entry n-2 is the column-major upper-triangle adjacency string for a graph on 4n-2 vertices."
+    }
+  }
+}

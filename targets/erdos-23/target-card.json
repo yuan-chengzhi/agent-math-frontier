@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "erdos-23",
+  "problem_card_sha256": "5c6df85fddf467f95b6ca416036b6ef588cd9d24adf08e60730441143a15dbb6",
+  "canonical_statement": "Produce, for some integer 1<=n<=100, a triangle-free simple graph on exactly 5n labelled vertices together with at least n^2+1 pairwise edge-disjoint simple odd cycles. Every bipartite subgraph must omit at least one edge from each such cycle, so an accepted artifact needs more than n^2 edge deletions to become bipartite and is a counterexample to the unrestricted Erdős #23 conjecture. The certificate form is sufficient but not necessary for a counterexample.",
+  "source_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "amf.erdos23.oddcycle.v1 accepts after checking the order, canonical simple edge set, triangle-freeness, every odd cycle, and pairwise edge-disjointness of at least n^2+1 cycles. Lean closure and independent reviews remain separate.",
+  "partial_progress_criterion": "Retain new verified parameter ranges, structural reductions, exact MaxCut or bipartization certificates not expressible by the edge-disjoint-cycle profile, and reusable Lean graph lemmas.",
+  "stop_conditions": [
+    "The conjecture or selected finite range is superseded by current literature.",
+    "A plausible counterexample needs a different sound bipartization lower-bound certificate.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/erdos-23/candidate.schema.json", "bytes": 1112, "sha256": "c8de4e74b5c88a7aaa6465e2eeb428d2c4991c888cee91717783427ddde49df5"},
+  "verifier_id": "amf.erdos23.oddcycle.v1"
+}

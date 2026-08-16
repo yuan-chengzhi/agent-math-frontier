@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_RED_TEAM_CORPUS_DRAFT_1",
+  "problem_id": "erdos-64",
+  "reviewer_id": "codex-verifier-red-team-2026-08-14",
+  "cases": [
+    {"id": "e64-exhaustive-c4-all-graphs-n6", "class": "semantic-reference", "expected": "DFS agrees with common-neighbor characterization on all 32768 labelled graphs"},
+    {"id": "e64-random-c4-c8-independent-dfs", "class": "semantic-reference", "expected": "agreement with an unpruned reference search"},
+    {"id": "e64-cycle-with-chords", "class": "cycle-semantics", "expected": "non-induced simple power-of-two cycle detected"},
+    {"id": "e64-orientation-canonicalization", "class": "search-completeness", "expected": "one orientation retained without losing a cycle"},
+    {"id": "e64-disconnected-graph", "class": "statement-boundary", "expected": "connectivity is not silently required"},
+    {"id": "e64-minimum-degree", "class": "statement-boundary", "expected": "degree two rejected in production"},
+    {"id": "e64-cycle-length-64", "class": "upper-boundary", "expected": "detected"},
+    {"id": "e64-bool-vertex", "class": "json-type-confusion", "expected": "rejected"},
+    {"id": "e64-reverse-edge", "class": "canonicalization", "expected": "rejected"},
+    {"id": "e64-duplicate-json-key", "class": "json-parser", "expected": "rejected"},
+    {"id": "e64-search-step-ceiling", "class": "resource-boundary", "expected": "apparatus error / exit two"},
+    {"id": "e64-memory-error", "class": "resource-boundary", "expected": "apparatus error / exit two"},
+    {"id": "e64-source-byte-drift", "class": "source-binding", "expected": "contract rejection"},
+    {"id": "e64-source-symlink", "class": "source-binding", "expected": "contract rejection"}
+  ]
+}

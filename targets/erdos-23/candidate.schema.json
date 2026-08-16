@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/erdos-23/candidate.schema.json",
+  "title": "Erdos 23 counterexample with an edge-disjoint odd-cycle certificate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "n_parameter", "edges", "odd_cycles"],
+  "properties": {
+    "schema": {"const": "AMF_ERDOS23_ODD_CYCLE_COUNTEREXAMPLE_1"},
+    "n_parameter": {"type": "integer", "minimum": 1, "maximum": 100},
+    "edges": {
+      "type": "array",
+      "maxItems": 124750,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [{"type": "integer", "minimum": 0, "maximum": 499}, {"type": "integer", "minimum": 0, "maximum": 499}],
+        "items": false
+      }
+    },
+    "odd_cycles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 10001,
+      "items": {"type": "array", "minItems": 5, "maxItems": 499, "uniqueItems": true, "items": {"type": "integer", "minimum": 0, "maximum": 499}}
+    }
+  }
+}

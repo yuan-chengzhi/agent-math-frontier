@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/srg-69-20-7-5/candidate.schema.json",
+  "title": "Strongly regular graph with parameters (69,20,7,5)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "n", "edges"],
+  "properties": {
+    "schema": {"const": "AMF_SRG_69_20_7_5_GRAPH_1"},
+    "n": {"const": 69},
+    "edges": {
+      "type": "array",
+      "minItems": 690,
+      "maxItems": 690,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [{"type": "integer", "minimum": 0, "maximum": 68}, {"type": "integer", "minimum": 0, "maximum": 68}],
+        "items": false
+      }
+    }
+  }
+}

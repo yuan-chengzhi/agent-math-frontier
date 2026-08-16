@@ -7,7 +7,7 @@
 |---|---|---|---|---|
 | [Erdős #307：两组素数倒数和的乘积为 1](https://www.erdosproblems.com/307) | 优先审核 | 输出 P、Q，并给出精确有理数等式证书；随后闭合固定 Lean 定理。 | exact_rational_then_lean | 已知搜索提示见证可能很大，短题面不代表搜索容易。 |
 | [Erdős #835：Johnson 图 J(2k,k) 的特定着色](https://www.erdosproblems.com/835) | 优先审核 | 在冻结的 k 上输出合法着色，或输出可独立验证的 SAT 不可满足证书。 | exact_coloring_or_sat_certificate_then_lean | 不存在已知有限 k 上界，排除更多 k 不会自动解决全题。 |
-| [Erdős #64：最小度至少 3 的图中的 2 的幂长圈](https://www.erdosproblems.com/64) | 孵化 | 优先寻找有限反例；正面方向则拆出可在 Lean 中复用的结构引理。 | exact_graph_counterexample_or_lean_proof | 无规模上界，盲目枚举很可能没有信息。 |
+| [Erdős #64：最小度至少 3 的图中的 2 的幂长圈](https://www.erdosproblems.com/64) | 孵化 | 可自由推进自然语言结构理论、计算搜索或 Lean；当前机器终检只接纳 4 至 64 个顶点的显式有限简单图反例。 | exact_bounded_graph_counterexample_checker | 无规模上界，盲目枚举很可能没有信息。 |
 | [Erdős #23：三角形自由图的二分化删边界](https://www.erdosproblems.com/23) | 优先审核 | 搜索有限反例，或证明新的参数区间/结构归约。 | exact_graph_plus_optimization_certificate_then_lean | 规模增长快，最优性证书可能远大于候选图。 |
 | [Erdős #7：全为奇模数的互异覆盖系](https://www.erdosproblems.com/7) | 观察 | 输出覆盖所有整数的有限同余类族，并闭合 Lean 陈述。 | finite_modular_certificate_then_lean | 容易把可验证误当成可搜索；穷举边界没有理论保证。 |
 | [Ramsey 数 R(5,5)](https://www.cs.rit.edu/~spr/ElJC/eline.html) | 观察 | 把 43、44、45 顶点实例逐个冻结为构造或不可满足证书任务。 | exact_graph_or_sat_certificate_then_lean | 计算资源和最终证书规模可能超出普通 agent 项目。 |
@@ -16,7 +16,7 @@
 |---|---|---|---|---|
 | erdos-307 | Lean 4 / Mathlib | [erdos_307](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/307.lean) | unreviewed | `验3 馈1 表3 拆2 具2 部1 值2 态2 资1` |
 | erdos-835 | Lean 4 / Mathlib | [erdos_835](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/835.lean) | unreviewed | `验3 馈2 表3 拆2 具3 部2 值2 态2 资1` |
-| erdos-64 | Lean 4 / Mathlib | [erdos_64](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/64.lean) | unreviewed | `验3 馈1 表3 拆2 具2 部2 值3 态2 资1` |
+| erdos-64 | Lean 4 / Mathlib | [erdos_64](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/64.lean) | reviewed_pass_2026-08-14 | `验3 馈1 表3 拆2 具2 部2 值3 态2 资1` |
 | erdos-23 | Lean 4 / Mathlib | [erdos_23](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/23.lean) | unreviewed | `验3 馈2 表3 拆3 具3 部3 值3 态2 资1` |
 | erdos-7 | Lean 4 / Mathlib | [erdos_7](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/ErdosProblems/7.lean) | unreviewed | `验3 馈1 表3 拆1 具2 部2 值3 态2 资1` |
 | ramsey-r55 | Lean 4 / Mathlib | [ramsey_number_five_five](https://github.com/google-deepmind/formal-conjectures/blob/b33d8678a28118c95d8d4f60b11faaf39ccff1e6/FormalConjectures/Wikipedia/RamseyNumbers.lean) | one_source_checked | `验3 馈2 表3 拆3 具3 部3 值3 态3 资0` |

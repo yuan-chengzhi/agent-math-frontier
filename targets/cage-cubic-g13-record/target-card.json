@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "cage-cubic-g13-record",
+  "problem_card_sha256": "65362cb4c698596326ca70b0b996541a1ce823aa3dd9f435baf1841050871642",
+  "canonical_statement": "Produce a connected simple 3-regular graph on fewer than 272 labelled vertices whose girth is at least 13. Acceptance improves the pinned public upper bound n(3,13)<=272 to the candidate order; it does not prove the exact cage number, and record status must be refreshed independently.",
+  "source_revision": "house-of-graphs-web-2026-08-14",
+  "claim_scope": "RECORD_IMPROVEMENT",
+  "success_criterion": "amf.cage3g13.exact.v1 checks the canonical edge set, degree three at every vertex, connectivity, and absence of every cycle shorter than 13, then accepts. A current table audit is required before a record claim.",
+  "partial_progress_criterion": "Retain improvements inside a frozen voltage/Cayley family, exact exclusions of meaningful construction subclasses, and search trajectories with fewer short cycles.",
+  "stop_conditions": [
+    "The maintained cage table moves below 272 before or during the run.",
+    "The candidate is only isomorphic to a known graph or lacks provenance needed for submission.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/cage-cubic-g13-record/candidate.schema.json", "bytes": 797, "sha256": "081682451a631c0424be58cd91d3e30a3a74b0e11a3a3a486b8d664b9e2a2dca"},
+  "verifier_id": "amf.cage3g13.exact.v1"
+}

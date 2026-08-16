@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_RED_TEAM_CORPUS_DRAFT_1",
+  "problem_id": "frontier-stretched-lr",
+  "reviewer_id": "codex-verifier-red-team-2026-08-14",
+  "cases": [
+    {"id": "lr-brute-tableaux-4993-small-triples", "class": "semantic-reference", "expected": "both production cores equal a third direct cell enumerator"},
+    {"id": "lr-role-order-lambda-mu-nu", "class": "statement-boundary", "expected": "outer and inner roles are not permuted"},
+    {"id": "lr-size-equation", "class": "statement-boundary", "expected": "rejected when |lambda| != |mu|+|nu|"},
+    {"id": "lr-29-point-vanishing-polynomial", "class": "interpolation-alias", "expected": "degree-29 alias rejected by frozen degree/representation bound"},
+    {"id": "lr-unreduced-negative-rational", "class": "canonicalization", "expected": "rejected"},
+    {"id": "lr-negative-declared-value", "class": "semantic-boundary", "expected": "rejected"},
+    {"id": "lr-trailing-zero", "class": "canonicalization", "expected": "rejected"},
+    {"id": "lr-duplicate-json-key", "class": "json-parser", "expected": "rejected"},
+    {"id": "lr-float-json-number", "class": "json-parser", "expected": "rejected"},
+    {"id": "lr-operation-ceiling", "class": "resource-boundary", "expected": "apparatus failure"},
+    {"id": "lr-checker-exit-two", "class": "apparatus-protocol", "expected": "dispatcher infrastructure failure"},
+    {"id": "lr-forged-accepted-facts", "class": "checker-output-forgery", "expected": "dispatcher infrastructure failure"},
+    {"id": "lr-source-byte-drift", "class": "source-binding", "expected": "contract rejection"},
+    {"id": "lr-source-symlink", "class": "source-binding", "expected": "contract rejection"}
+  ]
+}

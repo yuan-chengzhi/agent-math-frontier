@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "ramsey-r55",
+  "problem_card_sha256": "6b508d2e7141025aa9d72ecfa16a40d876ed964886cbc7e81765495d4ce0b4bc",
+  "canonical_statement": "Produce a simple graph on the labelled vertex set {0,...,42} containing neither a clique of size 5 nor an independent set of size 5. Acceptance establishes R(5,5)>=44, a one-step lower-bound improvement relative to the pinned 43<=R(5,5)<=46 formal artifact; it does not determine R(5,5).",
+  "source_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+  "claim_scope": "RECORD_IMPROVEMENT",
+  "success_criterion": "amf.r55.graph43.v1 exhaustively searches the graph and complement for 5-cliques and accepts. Current-record/novelty review and optional Lean closure remain mandatory before publication.",
+  "partial_progress_criterion": "Retain new symmetry reductions, complete classifications, independently checkable SAT/LRAT artifacts for frozen instances, and materially smaller search encodings.",
+  "stop_conditions": [
+    "A current Ramsey record source already establishes R(5,5)>=44 or changes the bounds.",
+    "The graph representation or five-set convention fails independent reconstruction.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/ramsey-r55/candidate.schema.json", "bytes": 767, "sha256": "165a78b5481a70194d9fa114db8765490e687dd0c59fb49487e52cc5b004e9f8"},
+  "verifier_id": "amf.r55.graph43.v1"
+}

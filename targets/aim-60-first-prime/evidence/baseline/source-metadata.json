@@ -1,0 +1,29 @@
+{
+  "schema": "AMF_AIM60_BASELINE_SOURCE_METADATA_1",
+  "retrieved_at": "2026-08-14",
+  "redistribution_note": "The AIM PDF is not copied into this repository because the source catalog permits links and paraphrase only. The exact-factor and ECPP certificate consists of independently checkable numerical facts.",
+  "frozen_example": {
+    "a": "488669",
+    "first_positive_prime_x": 616980,
+    "claim": "The AIM problem list gives this as an example and says x^12+a is composite for 1 <= x <= 616979 and then prime. This repository freezes only that example as a threshold, not a current-record or global-optimality claim."
+  },
+  "certificate_reconstruction": {
+    "composite_factor_generator": "PARI/GP 2.17.4 factor",
+    "prime_certificate_generator": "PARI/GP 2.17.4 primecert with the default Atkin--Morain ECPP mode",
+    "trust_boundary": "Generator output is not trusted: the repository verifier checks every modular rule, every exact division, and every ECPP theorem condition using Python integer arithmetic without PARI."
+  },
+  "sources": [
+    {
+      "role": "primary_problem_statement_and_public_example",
+      "url": "https://aimath.org/pastworkshops/aint26problemlist.pdf",
+      "retrieved_sha256": "4bf2321149bb0a7ad1eae4f6a767b23d7a2f7eceb73f49aee4832a4cff057a37",
+      "source_revision": "2026-05-public-version"
+    },
+    {
+      "role": "public_sequence_cross_check_and_congruence_optimization",
+      "url": "https://oeis.org/A122131",
+      "checked_at": "2026-08-14",
+      "note": "A122131 lists 616980 first and records the independently checkable observation that a prime-producing x must be divisible by 2, 3, 5, 7 and 13."
+    }
+  ]
+}

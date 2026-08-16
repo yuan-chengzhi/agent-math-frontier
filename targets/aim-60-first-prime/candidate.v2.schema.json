@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/aim-60-first-prime/candidate.v2.schema.json",
+  "title": "AIM #60 provisionally rebased experimental candidate version 2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "a", "first_prime_x", "composite_cover_rules", "explicit_factors", "primality_certificate"],
+  "properties": {
+    "schema": {"const": "AMF_AIM60_CANDIDATE_2"},
+    "a": {"type": "string", "pattern": "^[1-9][0-9]{0,19}$", "description": "Canonical positive decimal; the checker additionally enforces a < 10^20."},
+    "first_prime_x": {"type": "integer", "minimum": 1455091, "maximum": 10000000},
+    "composite_cover_rules": {
+      "type": "array",
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["divisor", "residues"],
+        "properties": {
+          "divisor": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+          "residues": {"type": "array", "minItems": 1, "items": {"type": "integer", "minimum": 0}}
+        }
+      }
+    },
+    "explicit_factors": {
+      "type": "array",
+      "maxItems": 250000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["x", "factor"],
+        "properties": {
+          "x": {"type": "integer", "minimum": 1, "maximum": 9999999},
+          "factor": {"type": "string", "pattern": "^[1-9][0-9]*$"}
+        }
+      }
+    },
+    "primality_certificate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "steps"],
+      "properties": {
+        "kind": {"const": "ATKIN_MORAIN_ECPP_1"},
+        "steps": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"$ref": "#/$defs/ecppStep"}}
+      }
+    }
+  },
+  "$defs": {
+    "unsignedDecimal": {"type": "string", "pattern": "^(0|[1-9][0-9]*)$"},
+    "positiveDecimal": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+    "signedDecimal": {"type": "string", "pattern": "^(0|-?[1-9][0-9]*)$"},
+    "ecppStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["n", "trace", "s", "curve_a", "point_x", "point_y"],
+      "properties": {
+        "n": {"$ref": "#/$defs/positiveDecimal"},
+        "trace": {"$ref": "#/$defs/signedDecimal"},
+        "s": {"$ref": "#/$defs/positiveDecimal"},
+        "curve_a": {"$ref": "#/$defs/unsignedDecimal"},
+        "point_x": {"$ref": "#/$defs/unsignedDecimal"},
+        "point_y": {"$ref": "#/$defs/unsignedDecimal"}
+      }
+    }
+  }
+}

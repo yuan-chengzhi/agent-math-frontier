@@ -1,0 +1,158 @@
+{
+  "schema": "AMF_ACTIVATION_PLAN_2",
+  "activation_id": "pmw-frontier-choice-2026-08-14",
+  "checked_at": "2026-08-14",
+  "execution_policy": {
+    "network": false,
+    "model_calls": 0,
+    "test_timeout_seconds": 1200
+  },
+  "budget": {
+    "limits": {
+      "context_tokens": 1050000,
+      "host_context_steers": 2,
+      "host_phase_prompts": 2,
+      "input_tokens_per_provider_request": 922000,
+      "output_tokens_per_provider_request": 128000,
+      "provider_request_attempts": 516,
+      "tool_calls": 512,
+      "verifier_calls": 8,
+      "wall_ms": 15600000
+    },
+    "maximum_artifact_bytes": 67108864,
+    "retain_failures": true,
+    "stop_conditions": [
+      "Each life uses exactly one persistent Pi RPC session with at most two host-issued phase prompts: S0 then S1; these prompts are not a count of provider requests.",
+      "Actual provider-request attempts include tool-result and host-steering continuations, are counted separately, and stop at 516 per life.",
+      "The host may inject at most two one-shot context-safety steers per life; retry, follow-up, replacement, and compaction continuations remain disabled.",
+      "S0 stops after 1,200,000 wall-clock milliseconds or 24 tool calls, whichever occurs first.",
+      "S1 stops after 14,400,000 wall-clock milliseconds; the complete life stops after 15,600,000 wall-clock milliseconds or 512 cumulative tool calls, whichever occurs first.",
+      "The host aborts before another provider request whenever trusted context plus a conservative pending-result bound cannot prove that input remains at most 922,000 tokens; the configured context window is 1,050,000 tokens.",
+      "Each provider request may request at most 128,000 output tokens, and the complete life may invoke its target verifier at most 8 times.",
+      "No automatic retry, replacement life, context compaction, or host-authored summary is permitted.",
+      "A verifier timeout, resource ceiling, implementation disagreement, or other apparatus failure is inconclusive and is not mathematical rejection.",
+      "No receipt or target bundle grants model-launch or provider-billing authority."
+    ]
+  },
+  "targets": [
+    {
+      "problem_id": "degree-diameter-3-9-record",
+      "baseline": {
+        "baseline_id": "dd39-maintained-order-600-2026-08-14",
+        "description": "Frozen factual record and provenance metadata, a neutral agent baseline brief, and repository-owned conversion code. No third-party raw or normalized adjacency list is redistributed or bound.",
+        "artifacts": [
+          "targets/degree-diameter-3-9-record/evidence/baseline/agent-brief.json",
+          "targets/degree-diameter-3-9-record/evidence/baseline/convert_implicit.py",
+          "targets/degree-diameter-3-9-record/evidence/baseline/source-metadata.json"
+        ]
+      },
+      "reviews": {
+        "statement": {
+          "axis": "STATEMENT_FIDELITY",
+          "reviewer_id": "codex-subagent-statement-review-2026-08-14",
+          "reviewer_task_path": "/root/statement_review",
+          "review_id": "degree-diameter-3-9-record-statement-fidelity-2026-08-14",
+          "verdict": "PASS",
+          "report": "targets/degree-diameter-3-9-record/evidence/reviews/statement-fidelity-codex-2026-08-14.md",
+          "reviewer_authority": "targets/degree-diameter-3-9-record/evidence/reviews/process/statement-authority-2026-08-14.json",
+          "review_session_evidence": "targets/degree-diameter-3-9-record/evidence/reviews/process/statement-session-2026-08-14.json"
+        },
+        "open_status": {
+          "axis": "OPEN_STATUS_AND_NOVELTY",
+          "reviewer_id": "codex-subagent-open-status-review-2026-08-14",
+          "reviewer_task_path": "/root/open_status_review",
+          "review_id": "degree-diameter-3-9-record-open-status-2026-08-14",
+          "verdict": "PASS",
+          "report": "targets/degree-diameter-3-9-record/evidence/reviews/open-status-codex-2026-08-14.md",
+          "reviewer_authority": "targets/degree-diameter-3-9-record/evidence/reviews/process/open-status-authority-2026-08-14.json",
+          "review_session_evidence": "targets/degree-diameter-3-9-record/evidence/reviews/process/open-status-session-2026-08-14.json"
+        }
+      },
+      "red_team": {
+        "reviewer_id": "codex-verifier-red-team-2026-08-14",
+        "corpus": "targets/degree-diameter-3-9-record/evidence/red-team/corpus-codex-2026-08-14.json",
+        "report": "targets/degree-diameter-3-9-record/evidence/red-team/report-codex-2026-08-14.md"
+      },
+      "test_modules": ["tests.test_dd39_verifier", "tests.test_dd39_red_team"]
+    },
+    {
+      "problem_id": "erdos-64",
+      "baseline": {
+        "baseline_id": "erdos64-frontier-baselines-2026-08-14",
+        "description": "Frozen source metadata, neutral frontier-route brief, and the pinned upstream Lean statement snapshot; the snapshot contains sorry and is not treated as root-proof evidence.",
+        "artifacts": [
+          "targets/erdos-64/evidence/baseline/agent-brief.json",
+          "targets/erdos-64/evidence/baseline/source-metadata.json",
+          "targets/erdos-64/evidence/sources/FormalConjectures-Erdos64-b33d8678.lean"
+        ]
+      },
+      "reviews": {
+        "statement": {
+          "axis": "STATEMENT_FIDELITY",
+          "reviewer_id": "codex-subagent-statement-review-2026-08-14",
+          "reviewer_task_path": "/root/statement_review",
+          "review_id": "erdos-64-statement-fidelity-2026-08-14",
+          "verdict": "PASS",
+          "report": "targets/erdos-64/evidence/reviews/statement-fidelity-codex-2026-08-14.md",
+          "reviewer_authority": "targets/erdos-64/evidence/reviews/process/statement-authority-2026-08-14.json",
+          "review_session_evidence": "targets/erdos-64/evidence/reviews/process/statement-session-2026-08-14.json"
+        },
+        "open_status": {
+          "axis": "OPEN_STATUS_AND_NOVELTY",
+          "reviewer_id": "codex-subagent-open-status-review-2026-08-14",
+          "reviewer_task_path": "/root/open_status_review",
+          "review_id": "erdos-64-open-status-2026-08-14",
+          "verdict": "PASS",
+          "report": "targets/erdos-64/evidence/reviews/open-status-codex-2026-08-14.md",
+          "reviewer_authority": "targets/erdos-64/evidence/reviews/process/open-status-authority-2026-08-14.json",
+          "review_session_evidence": "targets/erdos-64/evidence/reviews/process/open-status-session-2026-08-14.json"
+        }
+      },
+      "red_team": {
+        "reviewer_id": "codex-verifier-red-team-2026-08-14",
+        "corpus": "targets/erdos-64/evidence/red-team/corpus-codex-2026-08-14.json",
+        "report": "targets/erdos-64/evidence/red-team/report-codex-2026-08-14.md"
+      },
+      "test_modules": ["tests.test_erdos64_verifier", "tests.test_erdos64_red_team"]
+    },
+    {
+      "problem_id": "frontier-stretched-lr",
+      "baseline": {
+        "baseline_id": "stretched-lr-frontier-baselines-2026-08-14",
+        "description": "Frozen source metadata and a neutral agent brief recording the exact bounded task and known route baselines through 2026-08-14.",
+        "artifacts": [
+          "targets/frontier-stretched-lr/evidence/baseline/agent-brief.json",
+          "targets/frontier-stretched-lr/evidence/baseline/source-metadata.json"
+        ]
+      },
+      "reviews": {
+        "statement": {
+          "axis": "STATEMENT_FIDELITY",
+          "reviewer_id": "codex-subagent-statement-review-2026-08-14",
+          "reviewer_task_path": "/root/statement_review",
+          "review_id": "frontier-stretched-lr-statement-fidelity-2026-08-14",
+          "verdict": "PASS",
+          "report": "targets/frontier-stretched-lr/evidence/reviews/statement-fidelity-codex-2026-08-14.md",
+          "reviewer_authority": "targets/frontier-stretched-lr/evidence/reviews/process/statement-authority-2026-08-14.json",
+          "review_session_evidence": "targets/frontier-stretched-lr/evidence/reviews/process/statement-session-2026-08-14.json"
+        },
+        "open_status": {
+          "axis": "OPEN_STATUS_AND_NOVELTY",
+          "reviewer_id": "codex-subagent-open-status-review-2026-08-14",
+          "reviewer_task_path": "/root/open_status_review",
+          "review_id": "frontier-stretched-lr-open-status-2026-08-14",
+          "verdict": "PASS",
+          "report": "targets/frontier-stretched-lr/evidence/reviews/open-status-codex-2026-08-14.md",
+          "reviewer_authority": "targets/frontier-stretched-lr/evidence/reviews/process/open-status-authority-2026-08-14.json",
+          "review_session_evidence": "targets/frontier-stretched-lr/evidence/reviews/process/open-status-session-2026-08-14.json"
+        }
+      },
+      "red_team": {
+        "reviewer_id": "codex-verifier-red-team-2026-08-14",
+        "corpus": "targets/frontier-stretched-lr/evidence/red-team/corpus-codex-2026-08-14.json",
+        "report": "targets/frontier-stretched-lr/evidence/red-team/report-codex-2026-08-14.md"
+      },
+      "test_modules": ["tests.test_stretched_lr_verifier", "tests.test_stretched_lr_red_team"]
+    }
+  ]
+}

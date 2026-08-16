@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "srg-69-20-7-5",
+  "problem_card_sha256": "1d0bc82d2391ca8daad4ebca1aad0381141a863272fa810521d2123647ff79e9",
+  "canonical_statement": "Produce a simple graph on 69 labelled vertices in which every vertex has degree 20, every adjacent pair has exactly 7 common neighbors, and every nonadjacent pair has exactly 5 common neighbors. Any accepted graph resolves the positive existence side of the unrestricted strongly regular graph parameter question.",
+  "source_revision": "jaanos-tables-git-2026-08-14",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "amf.srg692075.exact.v1 verifies exactly 690 canonical edges, every degree, and all 2346 pairwise common-neighbor counts and accepts. Current database/novelty review remains separate.",
+  "partial_progress_criterion": "Retain new feasible orbit matrices, rigorous necessary conditions, or certified exclusion of a predeclared mathematically meaningful symmetry class without claiming global nonexistence.",
+  "stop_conditions": [
+    "A current SRG table or paper resolves the parameter set.",
+    "The search only repeats a previously excluded group action without a new reduction.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/srg-69-20-7-5/candidate.schema.json", "bytes": 793, "sha256": "cb89b8cc0457b1e976ade9f256ae3c2a93197188b30272faf4a98175dc767e1b"},
+  "verifier_id": "amf.srg692075.exact.v1"
+}

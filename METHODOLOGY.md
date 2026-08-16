@@ -6,17 +6,19 @@
 
 因此，本项目不把以下信号单独视为“适合”：题目短、著名、有奖金、存在 Lean 文件、有限、模型写出了长证明、多个相似模型都同意，或 evaluator 数值有所提升。
 
-## 2. 三层池，而不是一张题单
+## 2. 四层状态管线，而不是一张题单
 
 ```text
-raw catalog  ──状态/语义/许可审计──>  curated candidates  ──冻结 target card──>  active attacks
-     │                                      │                                  │
-     └─可过期、可冲突                       └─不是开跑授权                       └─保存全部成本与失败
+raw catalog ──审计──> curated candidates ──冻结接口──> experimental runs ──独立审核──> audited active attacks
+     │                    │                                  │                         │
+     └─可过期、可冲突     └─仍非机器入口                     └─可试验，不可冒充审查    └─保存全部成本与失败
 ```
 
 - `raw catalog`：可批量采集题库元数据，允许状态陈旧和重复。
 - `curated candidates`：有规范来源、可执行目标、验证路线、风险和部分进展定义。
-- `active attacks`：两名独立 reviewer 完成状态/题意审核，evaluator 已红队，预算与工件已冻结。
+- `experimental runs`：已有内容寻址的 target card、候选 schema 和可运行 verifier；
+  允许先测 agent—任务匹配，但新颖性、statement fidelity 和 evaluator 红队仍可未完成。
+- `audited active attacks`：两名独立 reviewer 完成状态/题意审核，完整报告与 reviewer/session 过程证据已内容绑定，evaluator 已红队，预算与工件已冻结。
 
 结果不会直接覆盖题目状态；状态变化以追加事件记录。
 
@@ -34,7 +36,7 @@ raw catalog  ──状态/语义/许可审计──>  curated candidates  ──
 
 ## 4. 五个硬门槛
 
-精选候选晋升 active 前，每项必须为 `pass`：
+精选候选晋升 `audited_active` 前，每项必须为 `pass`：
 
 1. `open_status`：原始出处、最近核查日期、检索记录与冲突证据齐全；
 2. `exact_target`：量词、边界、变体、完整成功和部分成功条件已冻结；
@@ -43,6 +45,10 @@ raw catalog  ──状态/语义/许可审计──>  curated candidates  ──
 5. `reproducibility`：evaluator、依赖、种子、预算、输出和失败均可保留。
 
 任何 `conditional` 都是未完成工作，不可被高分抵消。
+
+实验层不降低这五个门槛，而是把“可以运行 verifier”与“已经获准提出研究结论”
+拆成两个状态。实验结果可用于决定是否值得支付完整审查成本；只有全部门槛为
+`pass` 且 receipts 齐全时，才进入严格 audited-active 导出。
 
 ## 5. 九维向量，不求和
 
@@ -76,6 +82,8 @@ raw catalog  ──状态/语义/许可审计──>  curated candidates  ──
 审核顺序是：机器终检 → 边界与 evaluator 对抗审计 → 题意忠实度 → 新颖性检索 → 数学意义 → 可复现性。形式证明禁止残留 `sorry`、隐含未声明公理或把核心难点挪入未证 lemma；数值结果禁止只给浮点。
 
 未形式化的“完整解决”原则上需要两名领域专家。形式化结果仍需要专家确认 statement fidelity。公开结果先标 `candidate_result`，经过冷却期和上游同步才可升级为 `verified_novel_result`。
+
+Review receipt 的哈希绑定只回答“哪份报告、哪次声明的 reviewer/session、针对哪个 source revision 被纳入流程”，不能自行回答 reviewer 是否真实、结论是否正确，也不是密码学签名。Host 必须在平台身份层验证 authority/session，并让数学正确性继续接受独立复核。
 
 ## 7. 防止选择固化
 

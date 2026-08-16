@@ -1,0 +1,49 @@
+{
+  "schema": "AMF_AGENT_BASELINE_BRIEF_1",
+  "problem_id": "erdos-64",
+  "as_of": "2026-08-14",
+  "status_statement": "The unrestricted finite Erdős--Gyárfás conjecture remains open; one verified finite graph avoiding every power-of-two cycle would disprove it globally, while bounded negative search cannot prove it.",
+  "baseline_facts": [
+    "The hypothesis is minimum degree at least 3; connectivity is not required.",
+    "For a candidate on at most 64 vertices the relevant forbidden simple-cycle lengths are exactly 4, 8, 16, 32 and 64 when not exceeding n.",
+    "The upstream Lean declaration is only a pinned statement skeleton and contains sorry; it is not a trusted root-proof path in this target version."
+  ],
+  "known_route_baselines": [
+    {
+      "id": "p13-free-v2",
+      "scope": "P_13-free graphs",
+      "result": "The conjecture is proved for this subclass with computer assistance.",
+      "source": "https://arxiv.org/abs/2410.22842v2",
+      "research_consequence": "A result confined to this already covered subclass is not new root or partial progress unless it materially strengthens the method or formalization."
+    },
+    {
+      "id": "minimal-counterexample-structure-v1",
+      "scope": "a minimum-order-and-size counterexample, if one exists",
+      "result": "High-degree vertices are independent, every vertex is adjacent to a degree-3 vertex, and at least 4/7 of the vertices have degree exactly 3.",
+      "source": "https://arxiv.org/abs/2605.22844v1",
+      "research_consequence": "Searches or proofs should incorporate or genuinely strengthen these structural restrictions instead of rediscovering them numerically."
+    },
+    {
+      "id": "finite-sat-through-31",
+      "scope": "all finite simple graphs with minimum degree at least 3 through 31 vertices",
+      "result": "A pinned public SAT/SMS project reports exhaustive exclusion through order 31.",
+      "source": "https://github.com/ArjunBalaji79/erdos-gyarfas-min-degree-3/tree/c8c11e234d49baa263236a924789d3087e70b5c7",
+      "research_consequence": "A general finite exclusion must go beyond 31 and preserve independently checkable evidence; the public baseline itself still merits independent reproduction."
+    },
+    {
+      "id": "cubic-bipartite-through-58-v1",
+      "scope": "simple cubic bipartite graphs through 58 vertices",
+      "result": "Certified exhaustive computation excludes counterexamples in this subclass through order 58.",
+      "source": "https://arxiv.org/abs/2608.02675v1",
+      "research_consequence": "Cubic-bipartite search at order at most 58 duplicates known work; unrestricted, non-bipartite or higher-order directions remain distinct."
+    }
+  ],
+  "verification_caveats": [
+    "The exact checker accepts only explicit counterexamples on 4 to 64 vertices and may hit a deterministic search-step ceiling; that ceiling is an apparatus failure, never rejection.",
+    "A natural-language or Lean positive proof is valuable research but needs a separately designed trust boundary before formal closure."
+  ],
+  "provenance_caveats": [
+    "The through-31 SAT route is recorded as a public computational baseline pending independent reproduction.",
+    "Fast-moving 2026 literature and any actual candidate require a fresh novelty/status review before a public resolution claim."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/frontier-stretched-lr/candidate.schema.json",
+  "title": "Stretched Littlewood-Richardson negative-coefficient candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "lr_convention",
+    "polynomial_basis",
+    "sample_domain",
+    "lambda",
+    "mu",
+    "nu",
+    "coefficients",
+    "values_t_1_through_29"
+  ],
+  "properties": {
+    "schema": {"const": "AMF_STRETCHED_LR_CANDIDATE_1"},
+    "lr_convention": {"const": "c^(t*lambda)_(t*mu,t*nu)"},
+    "polynomial_basis": {"const": "monomial_t_constant_first"},
+    "sample_domain": {"const": "positive_integers_t=1..29"},
+    "lambda": {"$ref": "#/$defs/partition"},
+    "mu": {"$ref": "#/$defs/partition"},
+    "nu": {"$ref": "#/$defs/partition"},
+    "coefficients": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 29,
+      "items": {"$ref": "#/$defs/rational"}
+    },
+    "values_t_1_through_29": {
+      "type": "array",
+      "minItems": 29,
+      "maxItems": 29,
+      "items": {"type": "integer", "minimum": 0}
+    }
+  },
+  "$defs": {
+    "partition": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 7,
+      "items": {"type": "integer", "minimum": 1, "maximum": 30}
+    },
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numerator", "denominator"],
+      "properties": {
+        "numerator": {"type": "integer"},
+        "denominator": {"type": "integer", "minimum": 1}
+      }
+    }
+  },
+  "$comment": "The exact verifier additionally enforces weakly decreasing nonempty partitions, sum(part)<=30 for each partition, |lambda|=|mu|+|nu|, reduced rationals, no trailing zero coefficient, exact agreement with all 29 recomputed LR values, and at least one negative monomial coefficient. The 29 samples t=1,...,29 determine the polynomial because the frozen primary source gives degree <= binomial(length(lambda)+1,2) <= 28."
+}

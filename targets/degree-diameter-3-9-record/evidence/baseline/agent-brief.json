@@ -1,0 +1,28 @@
+{
+  "schema": "AMF_AGENT_BASELINE_BRIEF_1",
+  "problem_id": "degree-diameter-3-9-record",
+  "as_of": "2026-08-14",
+  "status_statement": "The maintained degree--diameter table still lists order 600 for maximum degree 3 and diameter at most 9; an accepted graph of order at least 601 is a record/lower-bound improvement, not an optimality proof.",
+  "baseline_facts": [
+    "The maintained problem uses maximum degree at most 3, not cubic regularity, and diameter at most 9, not exactly 9.",
+    "The externally reproducible Exoo_600 graph has 600 vertices, 900 edges, maximum degree 3, connectivity and diameter 9; its source SHA-256 is 12de7e2c303955f57196888a0eecae17d7e872616a638d6f7772b09f77f34106.",
+    "The Moore bound gives the exact harmless representation ceiling n <= 1534."
+  ],
+  "known_route_baselines": [
+    {
+      "id": "maintained-dd39-order-600",
+      "scope": "unrestricted finite simple graphs of maximum degree at most 3 and diameter at most 9",
+      "result": "Largest listed construction has order 600.",
+      "source": "https://web.mat.upc.edu/francesc.comellas/delta-d/taula_delta_d.html",
+      "research_consequence": "A genuine candidate must have at least 601 vertices; construction-family improvements below 601 are partial progress only when they add reusable evidence."
+    }
+  ],
+  "verification_caveats": [
+    "Both exact graph checkers must agree; timeout, resource failure or disagreement is inconclusive rather than mathematical rejection.",
+    "Novelty must be refreshed against the live maintained table before any external record claim."
+  ],
+  "provenance_caveats": [
+    "The repository does not redistribute the raw or complete normalized Exoo_600 adjacency list because file-level third-party rights remain unclear; use the fixed source URL/hash for local reconstruction.",
+    "The outer Mendeley V11 dataset is labelled CC BY 4.0, but that label is not treated as an unconditional file-level permission from Geoffrey Exoo."
+  ]
+}

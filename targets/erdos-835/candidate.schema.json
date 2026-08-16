@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/yuan-chengzhi/agent-math-frontier/targets/erdos-835/candidate.schema.json",
+  "title": "Erdos 835 complete coloring table for k=10",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "k", "colors"],
+  "properties": {
+    "schema": {"const": "AMF_ERDOS835_K10_COLORING_1"},
+    "k": {"const": 10},
+    "colors": {
+      "type": "array",
+      "minItems": 184756,
+      "maxItems": 184756,
+      "items": {"type": "integer", "minimum": 0, "maximum": 10},
+      "description": "Colors of the 10-subsets of {0,...,19} in Python itertools.combinations lexicographic order."
+    }
+  }
+}

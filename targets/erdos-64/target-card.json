@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "erdos-64",
+  "problem_card_sha256": "a75b3beccdf71f86bc425cecfe1485b82e849174ca528abf2351a4915f51b4e9",
+  "canonical_statement": "Produce a finite simple undirected graph G on an explicitly labelled vertex set {0,...,n-1}, with 4 <= n <= 64, such that every vertex has degree at least 3 and G contains no simple cycle of length 2^k for any integer k >= 2. An accepted graph is a counterexample to, and therefore a disproof of, the unrestricted Erdős--Gyárfás conjecture; the representation cap does not make a failed bounded search a positive proof.",
+  "source_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "The content-pinned amf.erdos64.counterexample.v1 checker parses the strict canonical edge list, confirms minimum degree at least 3, exhaustively completes every relevant fixed-length simple-cycle search for lengths 4, 8, 16, 32, and 64 not exceeding n, and returns ACCEPTED without reaching its deterministic search-step ceiling. Independent statement, novelty, and mathematical review remain required before public resolution claims.",
+  "partial_progress_criterion": "New natural-language structural theorems, a reproducible unrestricted finite exclusion beyond the pinned through-31 SAT route, a cubic-bipartite exclusion beyond the pinned through-58 route, a new subclass result beyond the pinned P_13-free route, sharper minimal-counterexample restrictions beyond the pinned degree-three domination and 4/7 baseline, or reusable no-sorry Lean lemmas are retained as progress but do not satisfy this machine closure target.",
+  "stop_conditions": [
+    "The canonical open status or exact statement changes under independent review.",
+    "The exact checker reaches SEARCH_STEP_LIMIT or its integrity cannot be established; this is inconclusive, not rejection.",
+    "The separately approved experiment resource budget is exhausted."
+  ],
+  "candidate_schema": {
+    "path": "targets/erdos-64/candidate.schema.json",
+    "bytes": 1088,
+    "sha256": "8e0ead296bb55b7e6ff559e76eb16a9aa8c3904f8da9b58746beabe40713d97f"
+  },
+  "verifier_id": "amf.erdos64.counterexample.v1"
+}

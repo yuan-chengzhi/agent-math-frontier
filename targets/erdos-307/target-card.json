@@ -1,0 +1,17 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "erdos-307",
+  "problem_card_sha256": "97e5ffe1cf8f767285c4bb0ce4409e8edf2af874275cff8a97e27a1a6049d7b8",
+  "canonical_statement": "Produce two nonempty finite sets P and Q of positive prime integers such that (sum_{p in P} 1/p)(sum_{q in Q} 1/q)=1 exactly. Each list is a set (no repeated member). Primes below 2^64 are checked deterministically; larger primes require a recursively complete Lucas certificate of their primality. The input caps constrain the machine representation only: any accepted witness proves the unrestricted existential statement, while an unsuccessful bounded search proves nothing about nonexistence.",
+  "source_revision": "b33d8678a28118c95d8d4f60b11faaf39ccff1e6",
+  "claim_scope": "FULL_PROBLEM",
+  "success_criterion": "amf.erdos307.exact.v1 accepts after checking set semantics, every prime or recursive primality certificate, and the rational identity with arbitrary-precision integer arithmetic. Proof-assistant closure and independent fidelity/novelty review remain separate post-acceptance steps.",
+  "partial_progress_criterion": "Retain reproducible search reductions, stronger cardinality or prime-product barriers, certified infeasible subclasses, and Lean lemmas even when no accepted witness is found.",
+  "stop_conditions": [
+    "The fixed upstream statement or its set conventions fail a statement-fidelity review.",
+    "The candidate exceeds the explicit representation limits or verifier integrity is uncertain.",
+    "The separately approved experiment budget is exhausted."
+  ],
+  "candidate_schema": {"path": "targets/erdos-307/candidate.schema.json", "bytes": 1537, "sha256": "5b6b779ef9314ab3af2e56e21a1faf1881e63257c6b786e1f24610f27196338c"},
+  "verifier_id": "amf.erdos307.exact.v1"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "AMF_RED_TEAM_CORPUS_DRAFT_1",
+  "problem_id": "aim-60-first-prime",
+  "reviewer_id": "codex-verifier-red-team-2026-08-14",
+  "cases": [
+    {"id": "aim-cover-self-divisor-equality", "class": "compositeness-boundary", "expected": "x is not covered until divisor is strictly smaller than x^12+a"},
+    {"id": "aim-residue-zero-positive-domain", "class": "domain-boundary", "expected": "coverage starts at x=divisor, never x=0"},
+    {"id": "aim-overlapping-cover-rules", "class": "coverage-accounting", "expected": "uncovered indices remain exact and cannot be omitted"},
+    {"id": "aim-factor-one", "class": "factor-boundary", "expected": "rejected"},
+    {"id": "aim-factor-equals-value", "class": "factor-boundary", "expected": "rejected"},
+    {"id": "aim-noncanonical-decimals", "class": "parser-canonicalization", "expected": "rejected"},
+    {"id": "aim-bool-index", "class": "json-type-confusion", "expected": "rejected"},
+    {"id": "aim-ecpp-chain-mismatch", "class": "primality-certificate", "expected": "rejected"},
+    {"id": "aim-ecpp-q-bound", "class": "primality-certificate", "expected": "rejected"},
+    {"id": "aim-ecpp-nonunit-denominator", "class": "primality-certificate", "expected": "rejected"},
+    {"id": "aim-u64-strong-pseudoprimes", "class": "terminal-primality", "expected": "rejected"},
+    {"id": "aim-cover-operation-ceiling", "class": "resource-boundary", "expected": "apparatus error / exit two"},
+    {"id": "aim-memory-error", "class": "resource-boundary", "expected": "apparatus error / exit two"},
+    {"id": "aim-source-byte-drift", "class": "source-binding", "expected": "contract rejection"},
+    {"id": "aim-source-symlink", "class": "source-binding", "expected": "contract rejection"}
+  ]
+}

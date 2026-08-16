@@ -1,0 +1,21 @@
+{
+  "schema": "AMF_TARGET_CARD_1",
+  "problem_id": "frontier-stretched-lr",
+  "problem_card_sha256": "6d891e29afadbdc210962f87dc63add362ec2b1d5ee1a3de0886a70abef534c0",
+  "canonical_statement": "Using the convention c^(t*lambda)_(t*mu,t*nu), produce three nonempty integer partitions lambda, mu and nu in canonical weakly decreasing positive-part form such that |lambda| = |mu| + |nu|, every partition has length at most 7 and sum of parts at most 30, and the stretched Littlewood-Richardson polynomial P(t) = c^(t*lambda)_(t*mu,t*nu) has a negative monomial-basis coefficient. The complete polynomial is encoded constant coefficient first as reduced rational pairs. The frozen primary source gives degree P <= binomial(length(lambda)+1,2) <= 28, so the candidate also supplies P(1),...,P(29), which uniquely determine the full polynomial without evaluating at the zero-partition convention.",
+  "source_revision": "frontiermath-page-2026-08-14",
+  "claim_scope": "BOUNDED_COUNTEREXAMPLE",
+  "success_criterion": "The content-pinned amf.stretched-lr.exact.v1 dispatcher accepts the strict candidate after its direct LR-tableau/Newton implementation and its mathematically independent Jacobi-Trudi--Pieri/Vandermonde implementation agree on all 29 exact LR values, the complete reduced rational polynomial, and at least one negative coefficient; separate open-status and novelty review remains mandatory at promotion and submission time.",
+  "partial_progress_criterion": "Independently reproducible exclusion of a new frozen parameter range beyond the known all-lengths-at-most-4 theorem, exact structural pruning of candidate families, or verified performance improvements that preserve both mathematical paths are retained as research progress but do not satisfy this counterexample target.",
+  "stop_conditions": [
+    "The canonical prompt, its length/sum bounds, or the open status changes and the frozen bounded target no longer represents the intended problem.",
+    "The two independent LR-coefficient or interpolation implementations disagree, exceed their attested resource envelope, or verifier integrity cannot be established.",
+    "The separately approved experiment resource budget is exhausted."
+  ],
+  "candidate_schema": {
+    "path": "targets/frontier-stretched-lr/candidate.schema.json",
+    "bytes": 2048,
+    "sha256": "d735a578d46a03e5246183e336012978cf48e82383f08cad415552b2684d4e40"
+  },
+  "verifier_id": "amf.stretched-lr.exact.v1"
+}
